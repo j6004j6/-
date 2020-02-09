@@ -1,0 +1,65 @@
+﻿@model viewmodel.ViewModel.CLogin
+    @using viewmodel.Models
+   
+@{
+ViewBag.Title = "logon";
+}
+
+
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />  
+    <title>專案登入畫面 </title>
+    }
+    @section styles{
+        <style>
+            body {
+                margin: 0;
+                font-family: 'Courier New';
+                font-size: 2rem;
+                color: black;
+            }
+
+            .div1 {
+                width: 300px;
+                margin: 60px auto;
+            }
+
+            .txt1 {
+            }
+
+            .logo {
+                width: 150px;
+                margin:20px 0px 50px 0px;
+            }
+        </style>
+    }
+
+</head>
+<body class="text-center">
+    <form method="post">
+
+        <div class="div1">
+            <img class="logo" src="~/Content/img/myloge.png" />
+            <p>工程管理系統</p>
+            <p><input class="txt1" type="text" name="txtAccount" placeholder="Account" autofocus required /></p>
+            <p><input class="txt1" type="password" name="txtPassword" placeholder="Password" required /></p><br />
+            <p>
+                 <button class="btn btn-lg btn-primary btn-block" type="submit">登入</button>
+            </p>            
+            <p>
+                @Html.ActionLink("註冊", "newmemeber", "Home", null, new { @class="btn btn-lg btn-primary btn-block"})
+            </p>
+
+
+        </div>
+    </form>
+</body>
+</html>
+@section scripts{
+    <script>
+
+    </script>
+}
