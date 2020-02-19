@@ -16,8 +16,14 @@ namespace TestFirst
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(                      
+                      "~/Content/vendor/jquery/jquery.min.js",
+                      "~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js",
+                      "~/Content/vendor/jquery-easing/jquery.easing.min.js",
+                      "~/Content/vendor/magnific-popup/jquery.magnific-popup.min.js",
+                      "~/Content/js/creative.min.js",
+                      "~/Scripts/bootstrap.js"
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

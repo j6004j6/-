@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbMyProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tMission">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fProjectCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fStage" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fEST_Time" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fSum_Time" Type="nvarchar" MaxLength="50" />
+          <Property Name="fReal_Time" Type="nvarchar" MaxLength="50" />
+          <Property Name="fComplete" Type="float" Nullable="false" />
+          <Property Name="fChargeMan" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fConfirmer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fPS" Type="nvarchar(max)" />
+          <Property Name="fPayment" Type="money" />
+        </EntityType>
+        <Association Name="FK_tMission_tMission">
+          <End Role="tMission" Type="Self.tMission" Multiplicity="1" />
+          <End Role="tMission1" Type="Self.tMission" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tMission">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tMission1">
+              <PropertyRef Name="fId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbMyProjectModelStoreContainer">
+          <EntitySet Name="tMission" EntityType="Self.tMission" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tMission_tMission" Association="Self.FK_tMission_tMission">
+            <End Role="tMission" EntitySet="tMission" />
+            <End Role="tMission1" EntitySet="tMission" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbMyProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tMission">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fProjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fStage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fEST_Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fSum_Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fReal_Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fComplete" Type="Double" Nullable="false" />
+          <Property Name="fChargeMan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fConfirmer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fPS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fPayment" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="tMission1" Relationship="Self.FK_tMission_tMission" FromRole="tMission" ToRole="tMission1" />
+          <NavigationProperty Name="tMission2" Relationship="Self.FK_tMission_tMission" FromRole="tMission1" ToRole="tMission" />
+        </EntityType>
+        <Association Name="FK_tMission_tMission">
+          <End Role="tMission" Type="Self.tMission" Multiplicity="1" />
+          <End Role="tMission1" Type="Self.tMission" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tMission">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tMission1">
+              <PropertyRef Name="fId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbMyProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tMission" EntityType="Self.tMission" />
+          <AssociationSet Name="FK_tMission_tMission" Association="Self.FK_tMission_tMission">
+            <End Role="tMission" EntitySet="tMission" />
+            <End Role="tMission1" EntitySet="tMission" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbMyProjectModelStoreContainer" CdmEntityContainer="dbMyProjectEntities">
+          <EntitySetMapping Name="tMission">
+            <EntityTypeMapping TypeName="dbMyProjectModel.tMission">
+              <MappingFragment StoreEntitySet="tMission">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fProjectCode" ColumnName="fProjectCode" />
+                <ScalarProperty Name="fStage" ColumnName="fStage" />
+                <ScalarProperty Name="fCode" ColumnName="fCode" />
+                <ScalarProperty Name="fEST_Time" ColumnName="fEST_Time" />
+                <ScalarProperty Name="fSum_Time" ColumnName="fSum_Time" />
+                <ScalarProperty Name="fReal_Time" ColumnName="fReal_Time" />
+                <ScalarProperty Name="fComplete" ColumnName="fComplete" />
+                <ScalarProperty Name="fChargeMan" ColumnName="fChargeMan" />
+                <ScalarProperty Name="fConfirmer" ColumnName="fConfirmer" />
+                <ScalarProperty Name="fPS" ColumnName="fPS" />
+                <ScalarProperty Name="fPayment" ColumnName="fPayment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

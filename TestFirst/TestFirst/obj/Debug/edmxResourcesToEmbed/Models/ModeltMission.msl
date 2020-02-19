@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbMyProjectModelStoreContainer" CdmEntityContainer="dbMyProjectEntities">
+    <EntitySetMapping Name="tMission">
+      <EntityTypeMapping TypeName="dbMyProjectModel.tMission">
+        <MappingFragment StoreEntitySet="tMission">
+          <ScalarProperty Name="fId" ColumnName="fId" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fProjectCode" ColumnName="fProjectCode" />
+          <ScalarProperty Name="fStage" ColumnName="fStage" />
+          <ScalarProperty Name="fCode" ColumnName="fCode" />
+          <ScalarProperty Name="fEST_Time" ColumnName="fEST_Time" />
+          <ScalarProperty Name="fSum_Time" ColumnName="fSum_Time" />
+          <ScalarProperty Name="fReal_Time" ColumnName="fReal_Time" />
+          <ScalarProperty Name="fComplete" ColumnName="fComplete" />
+          <ScalarProperty Name="fChargeMan" ColumnName="fChargeMan" />
+          <ScalarProperty Name="fConfirmer" ColumnName="fConfirmer" />
+          <ScalarProperty Name="fPS" ColumnName="fPS" />
+          <ScalarProperty Name="fPayment" ColumnName="fPayment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

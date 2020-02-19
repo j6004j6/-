@@ -47,10 +47,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -159,12 +166,31 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\工程管理Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CDictionary.cs" />
     <Compile Include="Models\CUser.cs" />
     <Compile Include="Models\CUserFactory.cs" />
+    <Compile Include="Models\ModeltMission.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeltMission.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModeltMission.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeltMission.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModeltMission.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeltMission.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tMission.cs">
+      <DependentUpon>ModeltMission.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Viewmodel\CLogin.cs" />
   </ItemGroup>
@@ -186,6 +212,7 @@
     <Content Include="Content\img\portfolio\fullsize\4.jpg" />
     <Content Include="Content\img\portfolio\fullsize\5.jpg" />
     <Content Include="Content\img\portfolio\fullsize\6.jpg" />
+    <Content Include="Content\img\portfolio\Theworkplace.png" />
     <Content Include="Content\img\portfolio\thumbnails\1.jpg" />
     <Content Include="Content\img\portfolio\thumbnails\2.jpg" />
     <Content Include="Content\img\portfolio\thumbnails\3.jpg" />
@@ -247,6 +274,16 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Models\ModeltMission.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModeltMission.Context.cs</LastGenOutput>
+      <DependentUpon>ModeltMission.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\ModeltMission.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeltMission.edmx</DependentUpon>
+      <LastGenOutput>ModeltMission.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -294,6 +331,13 @@
     <Content Include="Content\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\vendor\jquery\jquery.min.map" />
     <Content Include="Content\vendor\jquery\jquery.slim.min.map" />
+    <EntityDeploy Include="Models\ModeltMission.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModeltMission.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModeltMission.edmx.diagram">
+      <DependentUpon>ModeltMission.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -398,6 +442,8 @@
     <Content Include="Views\Home\登入系統.cshtml" />
     <Content Include="Views\Home\會員資料列表.cshtml" />
     <Content Include="Views\Home\新增會員.cshtml" />
+    <Content Include="Views\Home\工程款簽核.cshtml" />
+    <Content Include="Views\工程管理\FirstView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -412,6 +458,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -11,7 +11,7 @@ namespace TestFirst.Controllers
 {
     public class HomeController : Controller
     {
-             
+        
         public ActionResult 首頁()
         {
             if (Session[CDictionary.SK_CURRENT_LOGINED_USER] == null)
@@ -22,10 +22,23 @@ namespace TestFirst.Controllers
             {
                 CUser now = (CUser)Session[CDictionary.SK_CURRENT_LOGINED_USER];
                 ViewBag.user = now.fAccount;
-                //Session["User"] = now.fName;
                 return View();
             }
         }
+        [HttpGet]
+        public ActionResult 登入系統()
+        {
+            if (Session[CDictionary.SK_CURRENT_LOGINED_USER]!=null)
+            {
+                return RedirectToAction("首頁");
+            }
+            else
+            {
+                return View();
+            }
+            
+        }
+        [HttpPost]
         public ActionResult 登入系統(CLogin data)
         {
             CUser MyUser = (new CUserFactory()).getByAccount(data.txtAccount);
@@ -39,20 +52,21 @@ namespace TestFirst.Controllers
                     Session[CDictionary.SK_CURRENT_LOGINED_USER] = MyUser;
                     return RedirectToAction("首頁");
                 }
+                else
+                {
+                    ViewBag.log_result = "密碼錯誤，請再試一次";
+                    return View();
+                }
             }
-            return View();
-
+            else
+            {
+                ViewBag.log_result = "登入失敗";
+                return View();
+            }
         }
-        public ActionResult 工程管理()
-        {
-          
-
-            return View();
-        }
+        
         public ActionResult 工程款簽核 ()
         {
-           
-
             return View();
         }
         public ActionResult 照片管理()
@@ -81,8 +95,6 @@ namespace TestFirst.Controllers
         }
 
 
-
-
         // 測試看User List
         public ActionResult 會員資料列表()
         {
@@ -101,10 +113,6 @@ namespace TestFirst.Controllers
             return RedirectToAction("登入系統");
         }
 
-        
-    
-       
-       
         // 登出
         public ActionResult 登出()
         {

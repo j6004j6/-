@@ -1,0 +1,118 @@
+﻿@model IEnumerable<TestFirst.Models.tMission>
+
+@{
+    ViewBag.Title = "FirstView";
+}
+
+<h2>FirstView</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fProjectCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fStage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fEST_Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fSum_Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fReal_Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fComplete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fChargeMan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fConfirmer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fPS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fPayment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tMission1.fName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tMission2.fName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fProjectCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fStage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fEST_Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fSum_Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fReal_Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fComplete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fChargeMan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fConfirmer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fPS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fPayment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tMission1.fName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tMission2.fName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.fId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.fId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.fId })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts{
+    <script>
+        $('.theli').hide();
+    </script>
+}
