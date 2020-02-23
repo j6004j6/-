@@ -16,7 +16,7 @@ namespace TestFirst
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "工程管理", action = "FirstView", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "首頁", id = UrlParameter.Optional }
             );
         }
     }

@@ -26,5 +26,6 @@ namespace TestFirst.Models
         }
     
         public virtual DbSet<tMission> tMission { get; set; }
+        public virtual DbSet<tMissionDetail> tMissionDetail { get; set; }
     }
 }

@@ -18,23 +18,23 @@
     <Property Name="fPS" Type="nvarchar(max)" />
     <Property Name="fPayment" Type="money" />
   </EntityType>
-  <Association Name="FK_tMission_tMission">
-    <End Role="tMission" Type="Self.tMission" Multiplicity="1" />
-    <End Role="tMission1" Type="Self.tMission" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="tMission">
-        <PropertyRef Name="fId" />
-      </Principal>
-      <Dependent Role="tMission1">
-        <PropertyRef Name="fId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="tMissionDetail">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fMaterial" Type="nvarchar(max)" />
+    <Property Name="fChargeMan" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fWorkers" Type="nvarchar(max)" />
+    <Property Name="fWeather" Type="nvarchar" MaxLength="50" />
+    <Property Name="fToday" Type="datetime" />
+    <Property Name="fPhoto" Type="nvarchar" MaxLength="50" />
+    <Property Name="fPS" Type="nvarchar(max)" />
+  </EntityType>
   <EntityContainer Name="dbMyProjectModelStoreContainer">
     <EntitySet Name="tMission" EntityType="Self.tMission" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_tMission_tMission" Association="Self.FK_tMission_tMission">
-      <End Role="tMission" EntitySet="tMission" />
-      <End Role="tMission1" EntitySet="tMission" />
-    </AssociationSet>
+    <EntitySet Name="tMissionDetail" EntityType="Self.tMissionDetail" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

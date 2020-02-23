@@ -11,37 +11,23 @@ namespace TestFirst.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class tMission
     {
-        [DisplayName("工程id")]
         public int fId { get; set; }
-        [DisplayName("工程名")]
         public string fName { get; set; }
-        [DisplayName("工程代號")]
         public string fProjectCode { get; set; }
-        [DisplayName("工程狀態")]
         public string fStage { get; set; }
-        [DisplayName("工程代碼")]
         public string fCode { get; set; }
-        [DisplayName("預計開工時間")]
         public string fEST_Time { get; set; }
-        [DisplayName("總需時間")]
         public string fSum_Time { get; set; }
-        [DisplayName("實際完工時間")]
         public string fReal_Time { get; set; }
-        [DisplayName("完工")]
         public double fComplete { get; set; }
-        [DisplayName("負責人")]
         public string fChargeMan { get; set; }
-        [DisplayName("確認人")]
         public string fConfirmer { get; set; }
-        [DisplayName("備註")]
         public string fPS { get; set; }
-        [DisplayName("工程款項")]
         public Nullable<decimal> fPayment { get; set; }
-       
+    
         public virtual tMission tMission1 { get; set; }
         public virtual tMission tMission2 { get; set; }
     }

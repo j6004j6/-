@@ -38,5 +38,21 @@
       <End Role="tMission" EntitySet="tMission" />
       <End Role="tMission1" EntitySet="tMission" />
     </AssociationSet>
+    <EntitySet Name="tMissionDetail" EntityType="dbMyProjectModel.tMissionDetail" />
   </EntityContainer>
+  <EntityType Name="tMissionDetail">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fMaterial" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fChargeMan" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fWorkers" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fWeather" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fToday" Type="DateTime" Precision="3" />
+    <Property Name="fPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fPS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

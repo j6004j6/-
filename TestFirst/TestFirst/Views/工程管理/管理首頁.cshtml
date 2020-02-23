@@ -1,0 +1,212 @@
+﻿@model IEnumerable<TestFirst.Models.tMission>
+
+@{
+    ViewBag.Title = "FirstView";
+}
+
+<br />
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    @section styles
+    {
+        <style>
+            body {
+                font-size: 10px;
+                margin-top:20px;
+            }
+        </style>
+    }
+</head>
+@using (Html.BeginForm())
+{
+<body>
+
+    <p>
+        專案名子
+        <br />
+        @Html.TextBox("txtName", "", new { htmlAttributes = new { @class = "form-control" } })
+    </p>
+    <p>
+        專案階段
+        <br />
+        @Html.TextBox("txtStage")
+    </p>
+    <p>
+        專案代號
+        <br />
+        @Html.TextBox("txtCode")
+    </p>
+    @*<p>
+        開工日期
+        <br />
+        @Html.TextBox("txtDayStart")-@Html.TextBox("txtDayEnd")
+    </p>*@
+    @*<p>
+        專案狀態
+        <br />
+        @Html.TextBox("txtComplete")
+    </p>*@
+    <p>
+        負責人
+        <br />
+        @Html.TextBox("txtChargeMan")
+    </p>
+    <p>
+        確認人
+        <br />
+        @Html.TextBox("txtConfirmer")
+    </p>
+
+    <p>
+        專案金額
+        <br />
+        @Html.TextBox("txtPaymentStart")-@Html.TextBox("txtPaymentEnd")
+    </p>
+    <p>
+        <input type="submit" value="查詢" />
+    </p>
+    <div>
+        <p>
+            @Html.ActionLink("新增專案", "新增專案", "工程管理", null, new { @class = "btn btn-success", onclick = "return confirm('確認成立新專案??')" })
+        </p>
+        <p>
+            @Html.ActionLink("日報列表", "日報列表", "工程管理", null, new { @class = "btn btn-success" })
+        </p>
+    </div>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                專案代碼
+            </th>
+            <th>
+                專案名稱
+            </th>
+
+            <th>
+                工程階段
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.fCode)
+                </th>*@
+            <th>
+                開工日期
+            </th>
+            <th>
+                工程日數
+            </th>
+            @*<th>
+                    實際開工日期
+                </th>*@
+            <th>
+                完工日期
+            </th>
+            <th>
+                負責人
+            </th>
+            <th>
+                確認工程人
+            </th>
+            <th>
+                工程款
+            </th>
+            <th>
+                備註
+            </th>
+            <th>
+                編輯
+            </th>
+            <th>
+                新增日報
+            </th>
+            <th>
+                刪除
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.tMission1.fName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tMission2.fName)
+                </th>*@
+
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.fStage)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.fCode)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.fEST_Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fSum_Time)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.fReal_Time)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.fComplete)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fChargeMan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fConfirmer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fPayment)
+                </td>
+                <td>
+
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter">顯示備註</button>
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document" style="margin:auto">
+                            @Html.DisplayFor(modelItem => item.fPS)
+                        </div>
+                    </div>
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.tMission1.fName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tMission2.fName)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("編輯", "編輯專案", "工程管理", new { fId = item.fId }, new { @class = "btn btn-info" })
+                </td>
+                <td>
+                    @Html.ActionLink("檢視日報", "日報列表", "工程管理", new { txtcode = item.fCode }, new { @class = "btn btn-warning" })
+                </td>
+                <td>
+                    @Html.ActionLink("刪除", "刪除專案", "工程管理", new { fId = item.fId }, new { @class = "btn btn-danger", onclick = "return confirm('確定要刪除嗎?')" })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+    @section scripts{
+        <script>
+            $('.theli').hide();
+        </script>
+    }
+</body>
+        }
+    </html>
+  
+

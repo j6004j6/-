@@ -7,6 +7,7 @@
       <Diagram DiagramId="be5728070e4d4e5f8a3f9810ee1f6bcc" Name="Diagram1">
         <EntityTypeShape EntityType="dbMyProjectModel.tMission" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="dbMyProjectModel.FK_tMission_tMission" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dbMyProjectModel.tMissionDetail" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

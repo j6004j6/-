@@ -20,5 +20,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tMissionDetail">
+      <EntityTypeMapping TypeName="dbMyProjectModel.tMissionDetail">
+        <MappingFragment StoreEntitySet="tMissionDetail">
+          <ScalarProperty Name="fPS" ColumnName="fPS" />
+          <ScalarProperty Name="fPhoto" ColumnName="fPhoto" />
+          <ScalarProperty Name="fToday" ColumnName="fToday" />
+          <ScalarProperty Name="fWeather" ColumnName="fWeather" />
+          <ScalarProperty Name="fWorkers" ColumnName="fWorkers" />
+          <ScalarProperty Name="fChargeMan" ColumnName="fChargeMan" />
+          <ScalarProperty Name="fMaterial" ColumnName="fMaterial" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fCode" ColumnName="fCode" />
+          <ScalarProperty Name="fId" ColumnName="fId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -191,7 +191,12 @@
     <Compile Include="Models\tMission.cs">
       <DependentUpon>ModeltMission.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tMissionDetail.cs">
+      <DependentUpon>ModeltMission.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Viewmodel\CAdvanceQueryCondition.cs" />
+    <Compile Include="Viewmodel\CForreport.cs" />
     <Compile Include="Viewmodel\CLogin.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -443,7 +448,12 @@
     <Content Include="Views\Home\會員資料列表.cshtml" />
     <Content Include="Views\Home\新增會員.cshtml" />
     <Content Include="Views\Home\工程款簽核.cshtml" />
-    <Content Include="Views\工程管理\FirstView.cshtml" />
+    <Content Include="Views\工程管理\管理首頁.cshtml" />
+    <Content Include="Views\工程管理\日報列表.cshtml" />
+    <Content Include="Views\工程管理\新增日報.cshtml" />
+    <Content Include="Views\工程管理\新增專案.cshtml" />
+    <Content Include="Views\工程管理\編輯專案.cshtml" />
+    <Content Include="Views\工程管理\編輯日報.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
