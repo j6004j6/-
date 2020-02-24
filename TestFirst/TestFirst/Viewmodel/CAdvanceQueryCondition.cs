@@ -10,9 +10,8 @@ namespace TestFirst.Viewmodel
         public string txtName { get; set; }
         public string txtStage { get; set; }
         public string txtCode { get; set; }
-        //public string txtDaystart { get; set; }
-        //public string txtDayEnd { get; set; }
-        //public string txtComplete { get; set; }
+        public string txtDaystart { get; set; }
+        public string txtDayEnd { get; set; }       
         public string txtChargeMan { get; set; }
         public string txtConfirmer { get; set; }
         public string txtPaymentStart { get; set; }

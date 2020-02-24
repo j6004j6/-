@@ -36,14 +36,13 @@ namespace TestFirst.Controllers
             {
                 table = table.Where(p => p.fConfirmer.Contains(selectdata.txtConfirmer));
             }
-            //if (!string.IsNullOrEmpty(selectdata.日期))
-            //{
-               
-            //}
-            //if (!string.IsNullOrEmpty(selectdata.完成狀態))
-            //{
-            //    table = table.Where(p => p.fConfirmer.Contains(selectdata.txtConfirmer));
-            //}
+            if (!string.IsNullOrEmpty(selectdata.txtDaystart)&&!string.IsNullOrEmpty(selectdata.txtDayEnd))
+            {
+                var start = Convert.ToDateTime(selectdata.txtDaystart);
+                var end = Convert.ToDateTime(selectdata.txtDayEnd);
+                
+            }
+           
             if (!string.IsNullOrEmpty(selectdata.txtPaymentStart) && !string.IsNullOrEmpty(selectdata.txtPaymentEnd))
             {
                 decimal? start = Convert.ToDecimal(selectdata.txtPaymentStart);
@@ -52,14 +51,8 @@ namespace TestFirst.Controllers
             }
             return View(table);
 
-
-
-            //============================
-            //dbMyProjectEntities db = new dbMyProjectEntities();
-            //var table = from project in db.tMission
-            //            select project;
-            //return View(table);
         }
+
         public ActionResult 新增專案()
         {
           
@@ -77,7 +70,7 @@ namespace TestFirst.Controllers
         {
             tMission myproject = (new dbMyProjectEntities()).tMission.FirstOrDefault(p => p.fId == fId);
             if (myproject == null)
-                return RedirectToAction("List");
+                return RedirectToAction("管理首頁");
             return View(myproject);
           
         }
@@ -145,9 +138,9 @@ namespace TestFirst.Controllers
             dbMyProjectEntities db = new dbMyProjectEntities();
             db.tMissionDetail.Add(theReport);
             db.SaveChanges();
-
+            var thecode = theReport.fCode;
            
-            return RedirectToAction("日報列表");
+            return RedirectToAction("日報列表",new {txtcode= thecode });
 
         }
         public ActionResult 編輯日報(int fId)
@@ -174,8 +167,10 @@ namespace TestFirst.Controllers
                 olddata.fPS = changereport.fPS;
                 db.SaveChanges();
             }
+            var thecode = changereport.fCode;
 
-            return RedirectToAction("日報列表");
+            return RedirectToAction("日報列表", new { txtcode = thecode });
+          
         }
         public ActionResult 刪除日報(int fId)
         {
@@ -186,8 +181,10 @@ namespace TestFirst.Controllers
                 db.tMissionDetail.Remove(theproject);
                 db.SaveChanges();
             }
+            var thecode = theproject.fCode;
 
-            return RedirectToAction("管理首頁");
+            return RedirectToAction("日報列表", new { txtcode = thecode });
+           
         }
 
     }

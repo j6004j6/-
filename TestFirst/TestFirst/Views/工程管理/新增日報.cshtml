@@ -6,10 +6,10 @@
 
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>tMissionDetail</h4>
         <hr />
@@ -87,13 +87,24 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create"  class="btn btn-default" />
+                </div>
             </div>
-        </div>
     </div>
+    @*<div>
+    <button class="btn btn-info" id="btnsumit">新增</button>
+   </div>
+    <script>
+        $('#btnsumit').click(function () {
+            window.location.href = "../工程管理/管理首頁";
+        })
+    </script>*@
 }
 
+
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "管理首頁", "工程管理", null, new { @class = "btn btn-info" })
 </div>
+
+
