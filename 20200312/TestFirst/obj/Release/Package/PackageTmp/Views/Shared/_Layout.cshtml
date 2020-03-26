@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("styles", required: false)
+    <style>
+        .mother {
+            margin-bottom:10px;
+        }
+        .myall {
+             opacity:0.8;
+            color:black;
+            margin-right:5px;
+        }
+        .mydone {
+            background-color: #8E8E8E;
+            opacity:0.8;
+            color:black;
+            margin-right:5px;
+        }
+        .mywait {
+            background-color: #FFDCB9;
+            opacity: 0.8;
+            color: black;
+            margin-right: 5px;
+        }
+
+        .mysign {
+            background-color: #ACD6FF;
+            opacity: 0.8;
+            color: black;
+            margin-right: 5px;
+        }
+        .mydeny {
+            background-color: #FF3333;
+            opacity: 0.8;
+            color: black;
+            margin-right: 5px;
+        }
+        .myyet {
+            background-color: #DEFFAC;
+            opacity: 0.8;
+            color: #000000;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body  >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-3" id="mainNav">
+        <div class="container">
+            <a style="color:white" class="navbar-brand js-scroll-trigger" href="/Home/首頁">專案管理系統</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">工程管理</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="#">工程款簽核</a>
+                            <a class="dropdown-item" href="#">標單與合約</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">金物流管理</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="../Home/goInvoice">工程款簽核</a>
+                            <a class="dropdown-item" href="../Home/BiddingandContract">標單與合約</a>
+                            <a class="dropdown-item" href="../Home/HumanResource">專案人力資源規劃</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">資訊分析與圖表</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </div>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                    <li class="">
+                        <a class="nav-link js-scroll-trigger" href="#about">公司簡介</a>
+                    </li>
+                    <li class="">
+                        <a class="nav-link js-scroll-trigger" href="#portfolio">管理功能</a>
+                    </li>
+                    <li class="">
+                        <a class="nav-link js-scroll-trigger" href="#contact">聯絡資訊</a>
+                    </li>
+                    
+                </ul>
+                <span style="color:white">歡迎 : @Session["UserName"] </span>
+                @Html.ActionLink("登出", "登出", "Home", new { id = "logout" }, new { @class = "btn btn-danger" })
+
+            </div>
+        </div>
+    </nav>
+
+    @*<nav id="nav1" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a style="margin-left:10%" class="navbar-brand" href="#">專案管理系統</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">工程管理</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">業務金流管理</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">資訊分析與圖表</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>*@
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

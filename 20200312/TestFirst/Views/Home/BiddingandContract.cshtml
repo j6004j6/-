@@ -1,0 +1,242 @@
+﻿@model IEnumerable<TestFirst.tBidding>
+
+@{
+    ViewBag.Title = "BiddingandContract";
+    ViewBag.tempCount = 0;
+}
+<br>
+<h4 style="font-weight:bold">
+    標單與合約
+    @Html.ActionLink("工程款簽核", "goInvoice", "Home", new { }, new { @class = "btn btn-secondary" })
+    @Html.ActionLink("標單與合約", "BiddingandContract", "Home", new { }, new { @class = "btn btn-info" })
+    @Html.ActionLink("專案人力資源規劃", "HumanResource", "Home", new { }, new { @class = "btn btn-secondary" })
+</h4>
+
+<hr />
+<div style="text-align:right">
+    @Html.ActionLink("新增", "Bidding_new", "Home", new { }, new { @class = "btn btn-primary", style = "float:left" })
+    選擇分類 :
+    <select id="selector" class="custom-select" onchange="changeContent()">
+        <option value="全部顯示">全部顯示</option>
+        @{
+            foreach (var item in ViewBag.BiddingCategory)
+            {
+                <option value="@item">@item</option>
+            }
+        }
+    </select>
+</div>
+<div style="background-color:red;margin-top:1%;">
+    <nav aria-label="分頁" style="float:left">
+        <ul class="pagination page_mouse" id="page_ul">
+            <li class="page-item disabled" onclick="page_back()">
+                <span class="page-link"><</span>
+            </li>
+        </ul>
+    </nav>
+
+    <form>
+        <input class="btn btn-outline-success" style="float:right;" type="submit" value="Search" />
+        <input class="form-control" style="float:right;" id="select_search" name="select_search" type="text" placeholder="Search" />
+    </form>
+</div>
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            項次
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fUnit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fUnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fBidder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fChargeMan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fContract)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        ViewBag.tempCount += 1;
+        <tr id="tr_@ViewBag.tempCount">
+            <td>
+                @ViewBag.tempCount
+            </td>
+            <td class="@item.fCategory">
+                @Html.DisplayFor(modelItem => item.fName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fUnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fBidder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fChargeMan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fDate)
+            </td>
+            <td>
+                <a href="@Html.DisplayFor(modelItem => item.fContract)" class="btn btn-warning">合約書</a>
+
+            </td>
+            <td>
+                @Html.ActionLink("修改", "Bidding_Edit", new { id = item.fId }, new { @class = "btn btn-info" })
+                @Html.ActionLink("刪除", "Bidding_Delete", new { id = item.fId }, new { @class = "btn btn-danger", onclick = "return confirm('確定要刪除?')" })
+            </td>
+        </tr>
+    }
+
+</table>
+<script>
+    //TODO...
+    @{
+        string c1 = Session["UserId"].ToString().Substring(0, 1);
+        string c2 = Session["UserId"].ToString().Substring(1, 1);
+     }
+    // selector 選table顯示的類別
+    function changeContent()
+    {
+        var q = document.getElementById("selector");
+        var bid_cate = q.options[q.selectedIndex].value;
+
+        if (bid_cate=="全部顯示") {
+            for (var i = 1; i <=@ViewBag.tempCount; i++)
+            {
+
+                $(`#tr_${i}`).show()
+            }
+        }
+        else {
+            for (var i = 1; i <= @ViewBag.tempCount; i++)
+            {
+                $(`#tr_${i}`).hide()
+            }
+            $(`.${bid_cate}`).parent().show()
+        }
+    }
+    // tr上背景色
+    window.onload = function tRow_Coloring()
+    {
+        for (var i = 1; i <=@ViewBag.tempCount ; i++)
+        {
+            var tr = $(`#tr_${i}`);
+            if (tr.children()[2].innerText == "結構工程") {
+                tr.css("background-color", "#ACD6FF40")
+            }
+            else if (tr.children()[2].innerText == "假設工程") {
+                tr.css("background-color", "#FFDCB930")
+            }
+            else if (tr.children()[2].innerText == "裝修工程") {
+                tr.css("background-color", "#FF333320")
+            }
+            else if (tr.children()[2].innerText == "門窗工程") {
+                tr.css("background-color", "#8E8E8E40")
+            }
+        }
+    }
+    // 分頁按鈕產生
+    var currentPage = 1;
+    var pages = 0;
+    window.addEventListener('load', function () {
+        let num=@ViewBag.tempCount;
+        pages = (num / 10)+1;
+        var ul = document.getElementById('page_ul');
+        console.log(ul)
+        for (var i = 1; i < pages; i++) {
+            let li = document.createElement('li');
+            if (i==1) {
+                li.className = `page-item page${i} active`;
+            }
+            else {
+                li.className = `page-item page${i}`;
+            }
+            li.addEventListener('click', function page_now() {
+                currentPage = parseInt(this.innerText);
+                $(`.page-item`).removeClass('active')
+                this.className = `page-item page${currentPage} active`;
+                tr_show(`${currentPage}`)
+
+            })
+            let span = document.createElement('span');
+            span.className = "page-link";
+            span.innerText = `${i}`;
+            li.appendChild(span);
+            ul.appendChild(li);
+
+        }
+        let li = document.createElement('li');
+        li.className = "page-item pagedown";
+        let span = document.createElement("span");
+        span.className = "page-link";
+        span.innerText = '>';
+        li.onclick = page_go;
+        li.appendChild(span);
+        ul.appendChild(li);
+    })
+    // 分頁前後function
+    function page_back()
+    {
+        if (currentPage > 1) {
+            $(`.page-item`).removeClass('active')
+            currentPage -= 1;
+            var now = document.getElementsByClassName(`page${currentPage}`);
+            now[0].className = `page-item page${currentPage} active`;
+            tr_show(`${currentPage}`);
+        }
+    }
+
+    function page_go()
+    {
+        if (currentPage < pages-1) {
+            $(`.page-item`).removeClass('active')
+            currentPage += 1;
+            var now = document.getElementsByClassName(`page${currentPage}`);
+            now[0].className = `page-item page${currentPage} active`;
+            tr_show(`${currentPage}`);
+        }
+    }
+    //tr顯示的function
+    function tr_show(num)
+    {
+        for (var i = 1; i <= @ViewBag.tempCount; i++) {
+            $(`#tr_${i}`).hide();
+        }
+        for (var i = (num-1)*10+1; i <= (num * 10); i++) {
+            $(`#tr_${i}`).show();
+        }
+        console.log(num);
+    }
+</script>

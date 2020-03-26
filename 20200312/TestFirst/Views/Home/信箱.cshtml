@@ -1,0 +1,131 @@
+﻿@model IEnumerable<TestFirst.tmail>
+@using TestFirst.Models
+@using TestFirst
+
+<br />
+<br />
+@{
+    ViewBag.Title = "信箱";
+    CUser user = (CUser)Session[CDictionary.SK_CURRENT_LOGINED_USER];
+}
+<h4 style="font-weight:bold">
+    信箱
+    @Html.ActionLink("公告與留言版", "留言板", "Home", new { }, new { @class = "btn btn-secondary" })
+    @Html.ActionLink("信箱", "信箱", "Home", new { }, new { @class = "btn btn-info" })
+</h4>
+
+@Html.ActionLink("寄信", "SendMail", "Home", new { }, new { @class = "btn btn-primary" }) 未讀:@ViewBag.mailcount
+<br>
+<br>
+<table class="table table-bordered">
+    <tr style="background-color:#563d0330">
+        <th>
+            標題
+        </th>
+        <th>
+            寄件人
+        </th>
+        <th>
+            收件人
+        </th>
+        <th>
+            寄件日期
+        </th>
+        <th>
+            信息
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.fsendid.ToString() == Session["UserId"].ToString())
+        {
+            if (!item.fsenddelete)
+            {
+                <tr style="background-color:#8dfc5d30">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ftitle)
+                    </td>
+                    <td id="td_sendId">
+                        @if (item.fsendid.ToString() == Session["UserId"].ToString())
+                        {
+                            @:本人
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.fsendid)
+                        }
+                    </td>
+                    <td id="td_receiveId">
+                        @Html.DisplayFor(modelItem => item.frecieveid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fdate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fmessage)
+                    </td>
+                    <td>
+                        @{
+                            if (item.fsendid.ToString() != Session["UserId"].ToString())
+                            {
+                                @Html.ActionLink("打開", "OpenMail", new { fid = item.fid }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("刪除", "DeletMail", new { fid = item.fid }, new { @class = "btn btn-danger" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("刪除", "DeletMail", new { fid = item.fid }, new { @class = "btn btn-danger" })
+                            }
+                        }
+                    </td>
+                </tr>
+            }   
+
+
+        }
+        else
+        {
+            <tr style="background-color:#0094ff20">
+                <td>
+                    @Html.DisplayFor(modelItem => item.ftitle)
+                </td>
+                <td id="td_sendId">
+
+                    @if (item.fsendid.ToString() == Session["UserId"].ToString())
+                    {
+                        @:本人
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.fsendid)
+                    }
+                </td>
+                <td id="td_receiveId">
+                    @Html.DisplayFor(modelItem => item.frecieveid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fmessage)
+                </td>
+                <td>
+                    @{
+                        if (item.fsendid.ToString() != Session["UserId"].ToString())
+                        {
+                            @Html.ActionLink("打開", "OpenMail", new { fid = item.fid }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("刪除", "DeletMail", new { fid = item.fid }, new { @class = "btn btn-danger" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("刪除", "DeletMail", new { fid = item.fid }, new { @class = "btn btn-danger" })
+                        }
+                    }
+                </td>
+            </tr>
+
+        }
+
+    }
+
+</table>

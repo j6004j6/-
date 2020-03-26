@@ -1,0 +1,271 @@
+﻿@model List<TestFirst.tMessagBoard>
+@using TestFirst.Models
+@{
+    ViewBag.Title = "留言板";
+
+    string s = "x";
+    int count0 = 0;
+    int count1 = 0;
+    int count2 = 0;
+    int count3 = 0;
+  
+}
+<br />
+<br />
+<h4 style="font-weight:bold">
+    公告與留言板
+    @Html.ActionLink("公告與留言版", "留言板", "Home", new { }, new { @class = "btn btn-info" })
+    @Html.ActionLink("信箱", "信箱", "Home", new { }, new { @class = "btn btn-secondary" })
+</h4>
+
+@Html.ActionLink("新增公告", "SaveMessage1", "Home", new { }, new { @class = "btn btn-primary" })
+@Html.ActionLink("查詢", "AdvanceQueryMessage1", "Home", new { }, new { @class = "btn btn-info",style="float:right;width:150px" })
+總共公告: <span id="my0">@count0</span>
+我的公告: <span id="my1">@count1</span>
+已讀訊息: <span id="my2">@count2</span>
+未讀訊息: <span id="my3">@count3</span>
+<table class="table table-bordered">
+    <thead class="">
+        <tr style="background-color:#563d0350">
+            <th>
+                標題
+            </th>
+            <th>
+                發佈人
+            </th>
+            <th>
+                內容
+            </th>
+            <th>
+                日期<img src="~/img/tri.png" style="width:12px;float:right;margin-top:5px" onclick="orderby_date()" />
+            </th>
+            <th>
+                部門<img src="~/img/tri.png" style="width:12px;float:right;margin-top:5px" onclick="orderby_dep()" />
+            </th>
+            <th>
+                操作
+            </th>
+            <th>
+                已讀名單
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr style="background-color:white" class="tr_row" id="tr_@item.fid">
+                <td>
+                    @Html.DisplayFor(modelItem => item.ftitle)
+                </td>
+                <td class="Post_name">
+                    @Html.DisplayFor(modelItem => item.fuser_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fmessage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fdatetime)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modeItem => item.fdepartment)
+                </td>
+                <td class="function_alter">
+                    @Html.ActionLink("修改", "EditMessage", new { fid = item.fid }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("刪除", "DeletMessage", new { fid = item.fid }, new { @class = "btn btn-danger", onclick = "return confirm('確定要刪除嗎?')" })
+                </td>
+                <td class="function_read">
+                    <!-- Button trigger modal -->
+                    @{s = s + item.fid;}
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@s" onclick="getList(@item.fid)">
+                        已讀狀態
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="@s" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">名單</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table table-bordered">
+                                        @{
+                                            if (item.fdepartment == 10)
+                                            {
+                                                foreach (string name in ViewBag.NameList as List<string>)
+                                                {
+                                                    <tr class="tr_all">
+                                                        <td>@name</td>
+                                                        <td class="tr_@name">未讀</td>
+                                                    </tr>
+                                                }
+                                            }
+                                            else if (item.fdepartment == 1)
+                                            {
+                                                foreach (string name in ViewBag.NameList1 as List<string>)
+                                                {
+                                                    <tr class="tr_all">
+                                                        <td>@name</td>
+                                                        <td class="tr_@name">未讀</td>
+                                                    </tr>
+                                                }
+                                            }
+                                            else if (item.fdepartment == 2)
+                                            {
+                                                foreach (string name in ViewBag.NameList2 as List<string>)
+                                                {
+                                                    <tr class="tr_all">
+                                                        <td>@name</td>
+                                                        <td class="tr_@name">未讀</td>
+                                                    </tr>
+                                                }
+                                            }
+                                            else if (item.fdepartment == 3)
+                                            {
+                                                foreach (string name in ViewBag.NameList3 as List<string>)
+                                                {
+                                                    <tr class="tr_all">
+                                                        <td>@name</td>
+                                                        <td class="tr_@name">未讀</td>
+                                                    </tr>
+                                                }
+                                            }
+                                            else if (item.fdepartment == 4)
+                                            {
+                                                foreach (string name in ViewBag.NameList4 as List<string>)
+                                                {
+                                                    <tr class="tr_all">
+                                                        <td>@name</td>
+                                                        <td class="tr_@name">未讀</td>
+                                                    </tr>
+                                                }
+                                            }
+                                        }
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+<script>
+    // 把公告人EmployeeId轉為名字
+    function postman() {
+        var id_list = "";
+        for (var i = 0; i < $(".Post_name").length; i++) {
+            id_list += ($(".Post_name")[i].innerText);
+            id_list += ",";
+        }
+        id_list = id_list.substring(0, id_list.length - 1)
+
+        $.getJSON("../Home/AJAX_PostMan", {id:id_list}, function (datas) {
+            $.each(datas, function (order, value) {
+                document.querySelectorAll(".Post_name")[order].innerHTML = value;
+             })
+         })
+    }
+    postman();
+    // 把已讀名單回傳
+    function getList(id) {
+        $.getJSON("../Home/getList", {id:id}, function (datas) {
+            $.each(datas, function (order, value) {
+                console.log(order)
+                console.log(value)
+                for (var i = 0; i < $(`.tr_all`).length; i++) {
+                    $(`.tr_all`)[i].style.backgroundColor = "#ff7878";
+                }
+                $(`.tr_${value}`).text("已讀");
+                $(`.tr_${value}`).parent().css("background-color", 'lightgreen')
+            })
+        })
+    }
+    // 公告修改查看功能，改變tr背景顏色
+    function functional(){
+        var q = document.querySelectorAll('.Post_name'); // 選取td(EmpId)
+        for (var i = 0; i < q.length; i++) {
+            if (q[i].innerHTML !=@Session["UserId"]) {  // 並非自己的才能"以讀"
+                $('.Post_name')[i].parentNode.childNodes[13].remove(); // 移除修改刪除功能
+                $('.Post_name')[i].parentNode.appendChild(document.createElement('td'));
+                $('.Post_name')[i].parentNode.childNodes[11].remove();
+                $('.Post_name')[i].parentNode.appendChild(document.createElement('td'));
+                let MessId_temp = ($('.Post_name')[i].parentNode.id.substring(3)); //取得公告ID
+                $.get("../Home/CheckRead", { messid: MessId_temp }, function (ans) {    //查詢是否已經看過
+
+                    if (ans=="True") { // 看過
+                        var btn = document.createElement('button');
+                        btn.className = "btn btn-success 已讀";
+                        btn.style.margin = "auto";
+                        btn.innerText = "已讀";
+                        btn.disabled = true;
+                        btn.style.backgroundColor = "gray";
+                        document.getElementById(`tr_${MessId_temp}`).lastChild.previousSibling.appendChild(btn);
+                        document.getElementById(`tr_${MessId_temp}`).style.backgroundColor = "#D0D0D080";
+                    }
+                    else if (ans=="False"){ // 沒看過
+                        var btn = document.createElement('button');
+                        btn.className = "btn btn-success 未讀";
+                        btn.innerText = "未讀";
+                        btn.onclick = SendCheck;
+                        document.getElementById(`tr_${MessId_temp}`).lastChild.previousSibling.appendChild(btn);
+                        document.getElementById(`tr_${MessId_temp}`).style.backgroundColor = "#ACD6FF";
+                        $(`.tr_${MessId_temp}`).css("backgroundColor", "red");
+                        
+                    }
+                })
+                
+            }
+            else {
+                let MessId_temp = ($('.Post_name')[i].parentNode.id.substring(3)); //取得公告ID
+                document.getElementById(`tr_${MessId_temp}`).style.backgroundColor="#79FF7950"
+            } 
+        }
+    }
+    functional();
+    // 送出已讀到資料庫
+    function SendCheck()
+    {
+        $.post("../Home/AddRead", { messageid: this.parentNode.parentNode.id, userid:@Session["UserId"]}, function (result) {
+            console.log(result)
+        })
+        this.style.backgroundColor = "gray"
+        this.disabled = true;
+        this.innerHTML = "已讀";
+        console.log(this.parentNode.style.backgroundColor="#D0D0D0");
+    }
+    // 顯示上方統計數量
+    function calculation()
+    {
+        let x1 = $('.tr_row').length;
+        let x3 = $('.已讀').length;
+        let x4 = $('.未讀').length;
+        let x2 = x1 - x4 - x3;
+        $('#my0').text(x1); // 總共公告
+        $('#my1').text(x2)　// 我的公告
+        $('#my2').text(x3)  // 以讀訊息 
+        $('#my3').text(x4)  // 未讀訊息 
+    }
+    calculation();
+    setInterval(calculation, 3000)
+    // 順序導序
+    function orderby_date()
+    {
+        window.location.href = "../Home/留言板?order=date"
+    }
+    function orderby_dep()
+    {
+        window.location.href = "../Home/留言板?order=dep"
+    }
+</script>
+
