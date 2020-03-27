@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NorthwindModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Mydrink">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="DrinkName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Calories" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Mymeat">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Foodname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Calories" Type="Int32" />
+  </EntityType>
+  <EntityType Name="mymember">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Mypicture">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="MyVegetables">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Foodname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Calories" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="NorthwindEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Mydrink" EntityType="Self.Mydrink" />
+    <EntitySet Name="Mymeat" EntityType="Self.Mymeat" />
+    <EntitySet Name="mymember" EntityType="Self.mymember" />
+    <EntitySet Name="Mypicture" EntityType="Self.Mypicture" />
+    <EntitySet Name="MyVegetables" EntityType="Self.MyVegetables" />
+  </EntityContainer>
+</Schema>
