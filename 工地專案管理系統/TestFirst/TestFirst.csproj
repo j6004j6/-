@@ -175,6 +175,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OpenfileController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\工程管理Controller.cs" />
     <Compile Include="dbMyProjectEntity.Context.cs">
@@ -579,6 +580,7 @@
     <Content Include="Views\Chart\chartMission.cshtml" />
     <Content Include="Views\Chart\chartProject.cshtml" />
     <Content Include="Views\Chart\chartProject_Humancost.cshtml" />
+    <Content Include="Views\Openfile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
