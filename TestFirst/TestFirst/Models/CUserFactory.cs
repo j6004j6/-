@@ -29,7 +29,7 @@ namespace TestFirst.Models
         {
 
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = @"Data Source=.;Initial Catalog=dbMyProject;Integrated Security=True";
+            conn.ConnectionString = @"Data Source=.;Initial Catalog=dbMyProject;uid=sa;pwd=Wu49642005;Integrated Security=True";
             SqlDataAdapter myad = new SqlDataAdapter(sql, conn);
             conn.Open();
             DataSet myds = new DataSet();
@@ -48,7 +48,7 @@ namespace TestFirst.Models
                 myuser.fArrivingDate = item["fArrivingDate"].ToString();
                 myuser.fLeavingDate = item["fLeavingDate"].ToString();
                 myuser.fEmail = item["fEmail"].ToString();
-                myuser.fPhone = item["fPhone"].ToString();
+                //myuser.fPhone = item["fPhone"].ToString();
                 myuser.fAddress = item["fAddress"].ToString();
                 myuser.fEmployeeId = item["fEmployeeId"].ToString();
                 mylist.Add(myuser);
@@ -92,14 +92,15 @@ namespace TestFirst.Models
             sql += $"'{newuser.fArrivingDate}',";
             sql += $"'{newuser.fLeavingDate}',";
             sql += $"'{newuser.fEmail}',";
-            sql += $"'{newuser.fPhone}',";
+            //sql += $"'{newuser.fPhone}',";
             sql += $"'{newuser.fAddress}',";
             sql += $"'{newuser.fEmployeeId}')";
 
             comm.CommandText = sql;
             conn.Open();
             comm.ExecuteNonQuery();
-            conn.Close();
+            conn.Close();           
+            conn.Dispose();
         }
     }
 }

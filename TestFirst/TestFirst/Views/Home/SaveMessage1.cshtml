@@ -1,0 +1,56 @@
+﻿@model TestFirst.tMessagBoard
+
+@{
+    ViewBag.Title = "SaveMessage";
+}
+<hr />
+<hr />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <h4>新增公告</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <label class="control-label col-md-2">標題 : </label> 
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ftitle, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ftitle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group" >
+        <label class="control-label col-md-2">內文 : </label>
+        <div class="col">
+            <textarea name="fmessage" class="form-control" rows="8" cols="100"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">TO : </label>
+        <div class="col-md-10">
+            <input list="department" name="fdepartment" />
+            <datalist id="department">
+                <option value="10">全部門</option>
+                <option value="1">資訊部門</option>
+                <option value="2">主管</option>
+                <option value="3">工程部門</option>
+                <option value="4">財務部門</option>
+            </datalist>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="新增" class="btn btn-success" />
+            <a class="btn btn-danger" href="../Home/留言板">取消新增</a>
+        </div> 
+    </div>
+</div>
+}
+
+

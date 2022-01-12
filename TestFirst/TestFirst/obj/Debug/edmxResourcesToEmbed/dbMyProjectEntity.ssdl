@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbMyProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tAnnouncement">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" Nullable="false" />
+    <Property Name="fPoster" Type="nvarchar" MaxLength="50" />
+    <Property Name="fType" Type="nvarchar" MaxLength="50" />
+    <Property Name="fGetter" Type="nvarchar" MaxLength="50" />
+    <Property Name="fMessage" Type="nvarchar(max)" />
+    <Property Name="fTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="fTitle" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tBidding">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fName" Type="nvarchar" MaxLength="50" />
+    <Property Name="fCategory" Type="nvarchar" MaxLength="50" />
+    <Property Name="fUnit" Type="nvarchar" MaxLength="50" />
+    <Property Name="fUnitPrice" Type="money" />
+    <Property Name="fAmount" Type="nvarchar" MaxLength="50" />
+    <Property Name="fBidder" Type="nvarchar" MaxLength="50" />
+    <Property Name="fChargeMan" Type="nvarchar" MaxLength="50" />
+    <Property Name="fDate" Type="date" />
+    <Property Name="fContract" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tmail">
+    <Key>
+      <PropertyRef Name="fid" />
+    </Key>
+    <Property Name="fid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ftitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="fdate" Type="datetime" />
+    <Property Name="fsendid" Type="int" Nullable="false" />
+    <Property Name="frecieveid" Type="int" Nullable="false" />
+    <Property Name="fmessage" Type="nvarchar(max)" />
+    <Property Name="replymaiid" Type="int" />
+    <Property Name="isreplied" Type="bit" Nullable="false" />
+    <Property Name="fisreaded" Type="bit" Nullable="false" />
+    <Property Name="fsenddelete" Type="bit" Nullable="false" />
+    <Property Name="freceievedelete" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tMessagBoard">
+    <Key>
+      <PropertyRef Name="fid" />
+    </Key>
+    <Property Name="fid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ftitle" Type="nvarchar(max)" />
+    <Property Name="fuser_id" Type="int" Nullable="false" />
+    <Property Name="fmessage" Type="nvarchar(max)" />
+    <Property Name="fdatetime" Type="datetime" Nullable="false" />
+    <Property Name="fdepartment" Type="int" Nullable="false" />
+    <Property Name="fauthority" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tMessageConfirm">
+    <Key>
+      <PropertyRef Name="fid" />
+    </Key>
+    <Property Name="fid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fmssage_id" Type="int" />
+    <Property Name="fuser_id" Type="int" />
+  </EntityType>
+  <EntityType Name="tMission">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fProjectCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="fStage" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fEST_Time" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fSum_Time" Type="nvarchar" MaxLength="50" />
+    <Property Name="fReal_Time" Type="nvarchar" MaxLength="50" />
+    <Property Name="fComplete" Type="float" />
+    <Property Name="fChargeMan" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fPhone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fPS" Type="nvarchar(max)" />
+    <Property Name="fPayment" Type="money" />
+  </EntityType>
+  <EntityType Name="tMission_SignOff">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fMissionCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fContract" Type="nvarchar" MaxLength="50" />
+    <Property Name="fMoney" Type="money" />
+    <Property Name="fChargeMan" Type="nvarchar" MaxLength="50" />
+    <Property Name="fManager" Type="nvarchar" MaxLength="50" />
+    <Property Name="fStatus" Type="nchar" MaxLength="10" />
+    <Property Name="fDetails" Type="nvarchar" MaxLength="50" />
+    <Property Name="fConfirmDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tMissionDetail">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fMaterial" Type="nvarchar(max)" />
+    <Property Name="fChargeMan" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fWorkers" Type="nvarchar(max)" />
+    <Property Name="fWeather" Type="nvarchar" MaxLength="50" />
+    <Property Name="fToday" Type="nvarchar" MaxLength="50" />
+    <Property Name="fPhoto" Type="nvarchar" MaxLength="50" />
+    <Property Name="fPS" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tMissionDetail_Photos">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fPhoto" Type="image" />
+    <Property Name="fDate" Type="date" Nullable="false" />
+    <Property Name="fDescription" Type="nvarchar" MaxLength="50" />
+    <Property Name="fCategory" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tProject">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fEST_StartDate" Type="date" Nullable="false" />
+    <Property Name="fEST_EndDate" Type="date" Nullable="false" />
+    <Property Name="fReal_StartDate" Type="date" />
+    <Property Name="fReal_EndDate" Type="date" />
+    <Property Name="fChargeMan" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="fLocation" Type="nvarchar" MaxLength="50" />
+    <Property Name="fBoss" Type="nvarchar" MaxLength="50" />
+    <Property Name="fMoney" Type="money" />
+    <Property Name="fDetail" Type="nvarchar(max)" />
+    <Property Name="fCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tProject_Drawing">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="fName" Type="nvarchar" MaxLength="50" />
+    <Property Name="fAuthor" Type="nvarchar" MaxLength="50" />
+    <Property Name="fVersion" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tProject_HumanCost">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fProjectCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fLevel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fSalary" Type="money" />
+    <Property Name="fNumberOfPeople" Type="int" Nullable="false" />
+    <Property Name="fStartDate" Type="date" Nullable="false" />
+    <Property Name="fEndDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tUser">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fArrivingDate" Type="date" Nullable="false" />
+    <Property Name="fLeavingDate" Type="date" />
+    <Property Name="fEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="fPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="fAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="fEmployeeId" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tmail_tUser1">
+    <End Role="tUser" Type="Self.tUser" Multiplicity="1" />
+    <End Role="tmail" Type="Self.tmail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tUser">
+        <PropertyRef Name="fId" />
+      </Principal>
+      <Dependent Role="tmail">
+        <PropertyRef Name="fsendid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tmail_tUser2">
+    <End Role="tUser" Type="Self.tUser" Multiplicity="1" />
+    <End Role="tmail" Type="Self.tmail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tUser">
+        <PropertyRef Name="fId" />
+      </Principal>
+      <Dependent Role="tmail">
+        <PropertyRef Name="frecieveid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tMessageBoard_tUser">
+    <End Role="tUser" Type="Self.tUser" Multiplicity="1" />
+    <End Role="tMessagBoard" Type="Self.tMessagBoard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tUser">
+        <PropertyRef Name="fId" />
+      </Principal>
+      <Dependent Role="tMessagBoard">
+        <PropertyRef Name="fuser_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tMessageConfirm_tMessagBoard">
+    <End Role="tMessagBoard" Type="Self.tMessagBoard" Multiplicity="0..1" />
+    <End Role="tMessageConfirm" Type="Self.tMessageConfirm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMessagBoard">
+        <PropertyRef Name="fid" />
+      </Principal>
+      <Dependent Role="tMessageConfirm">
+        <PropertyRef Name="fmssage_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tMessageConfirm_tUser">
+    <End Role="tUser" Type="Self.tUser" Multiplicity="0..1" />
+    <End Role="tMessageConfirm" Type="Self.tMessageConfirm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tUser">
+        <PropertyRef Name="fId" />
+      </Principal>
+      <Dependent Role="tMessageConfirm">
+        <PropertyRef Name="fuser_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tMission_tMission">
+    <End Role="tMission" Type="Self.tMission" Multiplicity="1" />
+    <End Role="tMission1" Type="Self.tMission" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tMission">
+        <PropertyRef Name="fId" />
+      </Principal>
+      <Dependent Role="tMission1">
+        <PropertyRef Name="fId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--產生期間發現錯誤:
+警告 6035: 關聯性 'FK_tMissionDetail_tMission' 在主要端上，有不屬於資料表索引鍵的資料行。已排除此關聯性。
+        <Association Name="FK_tMissionDetail_tMission" />-->
+  <EntityContainer Name="dbMyProjectModelStoreContainer">
+    <EntitySet Name="tAnnouncement" EntityType="Self.tAnnouncement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tBidding" EntityType="Self.tBidding" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tmail" EntityType="Self.tmail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMessagBoard" EntityType="Self.tMessagBoard" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMessageConfirm" EntityType="Self.tMessageConfirm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMission" EntityType="Self.tMission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMission_SignOff" EntityType="Self.tMission_SignOff" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMissionDetail" EntityType="Self.tMissionDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMissionDetail_Photos" EntityType="Self.tMissionDetail_Photos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tProject" EntityType="Self.tProject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tProject_Drawing" EntityType="Self.tProject_Drawing" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tProject_HumanCost" EntityType="Self.tProject_HumanCost" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tUser" EntityType="Self.tUser" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tmail_tUser1" Association="Self.FK_tmail_tUser1">
+      <End Role="tUser" EntitySet="tUser" />
+      <End Role="tmail" EntitySet="tmail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tmail_tUser2" Association="Self.FK_tmail_tUser2">
+      <End Role="tUser" EntitySet="tUser" />
+      <End Role="tmail" EntitySet="tmail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tMessageBoard_tUser" Association="Self.FK_tMessageBoard_tUser">
+      <End Role="tUser" EntitySet="tUser" />
+      <End Role="tMessagBoard" EntitySet="tMessagBoard" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tMessageConfirm_tMessagBoard" Association="Self.FK_tMessageConfirm_tMessagBoard">
+      <End Role="tMessagBoard" EntitySet="tMessagBoard" />
+      <End Role="tMessageConfirm" EntitySet="tMessageConfirm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tMessageConfirm_tUser" Association="Self.FK_tMessageConfirm_tUser">
+      <End Role="tUser" EntitySet="tUser" />
+      <End Role="tMessageConfirm" EntitySet="tMessageConfirm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tMission_tMission" Association="Self.FK_tMission_tMission">
+      <End Role="tMission" EntitySet="tMission" />
+      <End Role="tMission1" EntitySet="tMission" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

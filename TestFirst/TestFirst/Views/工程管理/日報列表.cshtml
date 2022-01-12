@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TestFirst.Models.tMissionDetail>
+﻿@model IEnumerable<TestFirst.tMissionDetail>
 
 
 
@@ -7,85 +7,189 @@
 }
 
 <br />
+<!DOCTYPE html>
+<html lang="en">
 
-<table class="table">
-    <tr>
-        <th>
-            專案代號
-        </th>
-        <th>
-            工程項目
-        </th>
-        <th>
-            工程用料
-        </th>
-        <th>
-            工地負責人
-        </th>
-        <th>
-            工作人數
-        </th>
-        <th>
-            天氣
-        </th>
-        <th>
-            日期
-        </th>
-        <th>
-            工程照片
-        </th>
-        <th>
-            備 註
-        </th>
-        <th>
-            編輯
-        </th>
-        <th>
+<head>
+    <style>
+        body {
+            margin-top: 20px;
+        }
 
-        </th>
-        <th></th>
-    </tr>
+        p {
+            width:50%;
+            float: left;
+            font-family: 標楷體;
+        }
+        .mydiv {
+            border: 2px solid #ADADAD;
+            padding: 60px;
+            border-radius: 20px;
+        }
+       
 
-    @foreach (var item in Model)
-    {
+       
+    </style>
+</head>
+@using (Html.BeginForm())
+{
+<body>
+    <div class="clearfix mydiv">
+        <p>
+
+            施工項目
+            <br />@Html.TextBox("projName")
+        </p>
+        <p>
+            年度:<br />
+            <select name="projYear" id="TheYear" class="custom-select">
+                @{
+                    foreach (var item in ViewBag.Year)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                }
+            </select>
+
+        </p>
+        <p>
+
+            工程代號
+            <br />@Html.TextBox("txtCode")
+        </p>
+        <p>
+            月報:<br />
+            <select name="projMouth" id="TheMouth" class="custom-select">
+                @{
+                    foreach (var item in ViewBag.Mouth)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                }
+            </select>
+        </p>
+        <p>
+
+            工頭
+            <br />@Html.TextBox("projChargeMan")
+        </p>
+
+        <p>
+            週報:<br />
+            <select name="projWeekend" class="custom-select">
+                <option value=""></option>
+                <option value="第一週">第一週</option>
+                <option value="第二週">第二週</option>
+                <option value="第三週">第三週</option>
+                <option value="第四週">第四週</option>
+                <option value="第五週">第五週</option>
+            </select>
+        </p>
+        <p style="width:100%">
+            日期區間
+            <br />@Html.TextBox("projDayStart")-@Html.TextBox("projDayEnd")
+        </p>                          
+        <p>
+            <br />
+            <input type="submit" value="查詢" class="btn btn-primary" />
+        </p>
+    </div>
+    <br /><br />
+          <div>
+              <p>
+                  @Html.ActionLink("新增日報", "新增日報", "工程管理", null, new { @class = "btn btn-success" })
+                  @Html.ActionLink("專案列表", "管理首頁", "工程管理", null, new { @class = "btn btn-success" })
+
+              </p>
+              
+
+          </div>
+
+
+    <table class="table table-bordered">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.fCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fMaterial)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fChargeMan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fWorkers)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fWeather)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fToday)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fPhoto)
-            </td>
-            <td>
-                @Html.ActionLink("備註", "顯示備註", "工程管理", new { id = item.fId }, new { @class = "btn btn-warning" })
-            </td>
-            <td>
-                @Html.ActionLink("編輯", "編輯日報", "工程管理", new { fId = item.fId }, new { @class = "btn btn-info" })
-            </td>
-            <td>
-                @Html.ActionLink("刪除", "刪除日報", "工程管理", new { fId = item.fId }, new { @class = "btn btn-danger", onclick = "return confirm('確定要刪除嗎?')" })
-            </td>
+            <th>
+                專案代號
+            </th>
+            <th>
+                工程項目
+            </th>
+            <th>
+                工地負責人
+            </th>
+            <th>
+                日期
+            </th>
+            <th>
+                工作人數
+            </th>
+            <th>
+                天氣
+            </th>
+            <th>
+                備 註
+            </th>
+            <th>
+                編輯
+            </th>
+            <th>
+                刪除
+            </th>
+            <th>
+                工程照片
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
-<p>
-    @Html.ActionLink("新增日報", "新增日報", "工程管理", null, new { @class = "btn btn-success" })
-</p>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fChargeMan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fToday)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fWorkers)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fWeather)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.fPS)
+                </td>
+                <td>
+                    @Html.ActionLink("編輯", "編輯日報", "工程管理", new { fId = item.fId }, new { @class = "btn btn-info" })
+                </td>
+                <td>
+                    @Html.ActionLink("刪除", "刪除日報", "工程管理", new { fId = item.fId }, new { @class = "btn btn-danger", onclick = "return confirm('確定要刪除嗎?')" })
+                </td>
+                <td>
+                    @Html.ActionLink("上傳照片", "Photos_new", "Home", new { txtcode = item.fCode }, new { @class = "btn btn-warning" })
+
+                </td>
+            </tr>
+        }
+        
+
+    </table>
+
+
+    @section scripts{
+        <script>
+            $('.theli').hide();            
+            
+        </script>
+    }
+</body>
+}
+</html>

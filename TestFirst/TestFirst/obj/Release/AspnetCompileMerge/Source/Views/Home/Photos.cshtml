@@ -1,0 +1,146 @@
+﻿@model IEnumerable<TestFirst.tMissionDetail_Photos>
+
+@{
+    ViewBag.Title = "Photos";
+    int tempCount = 0;
+
+}
+<br>
+
+
+@Html.ActionLink("新增照片", "Photos_new", new { }, new { @class = "btn btn-primary" })
+
+<select id="selector" class="custom-select" style="float:right;margin-right:3%;" onchange="changeContent()">
+    <option value="全部顯示">全部顯示</option>
+    @{
+        foreach (var item in ViewBag.Project as List<TestFirst.tProject>)
+        {
+            <option class="@item.fName" value="@item.fName">@item.fCode-@item.fName</option>
+        }
+    }
+
+</select>
+
+<nav aria-label="分頁" style="float:left">
+    <ul class="pagination page_mouse" id="page_ul">
+        <li class="page-item disabled" onclick="page_back()">
+            <span class="page-link"><</span>
+        </li>
+    </ul>
+</nav>
+
+<br>
+<div class="container" style="margin-top:1%">
+
+    @foreach (var item in Model)
+    {
+        tempCount += 1;
+        byte[] photo = item.fPhoto == null ? null : item.fPhoto as byte[];
+        string imageData = null;
+        if (photo != null)
+        {
+            string base64 = Convert.ToBase64String(photo);
+            imageData = string.Format("data:image/gif;base64,{0}", base64);
+        }
+        <div class="card @item.fCategory tr_@tempCount" data-toggle="modal" style="width:150px;margin:0" data-target="#pic_@item.fId">
+            <img src="@imageData" alt="@item.fName">
+            <div class="info" style="color:white;font-size:30px">
+                @item.fDescription
+            </div>
+        </div>
+
+        <div class="modal fade" id="pic_@item.fId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="margin:auto">
+                <img src="@imageData" style="height:50%;width:100%" />
+            </div>
+            <h2 style="color:white;">
+                名稱 : @item.fName
+                日期 : @item.fDate
+                描述 : @item.fDescription
+                專案 : @item.fCategory
+            </h2>
+        </div>
+    }
+</div>
+<script>
+    $(".layout_body").css("backgroundColor", 'lightgray');
+    // 根據上方選單選擇顯示的照片
+    function changeContent() {
+        $(".card").hide(); // 全部隱藏
+        let x = $("#selector").val(); // 取得selection選到的專案名字
+        if (x == "全部顯示") {
+            $(`.card`).show();
+        }
+        $(`div .${x}`).show(); // 屬於被選到的專案才顯示
+
+    }
+    // 分頁按鈕產生
+    var currentPage = 1;
+    var pages = 0;
+    window.addEventListener('load', function () {
+        let num = $('.card').length;
+        pages = (num / 10) + 1;
+        var ul = document.getElementById('page_ul');
+        console.log(ul)
+        for (var i = 1; i < pages; i++) {
+            let li = document.createElement('li');
+            if (i == 1) {
+                li.className = `page-item page${i} active`;
+            }
+            else {
+                li.className = `page-item page${i}`;
+            }
+            li.addEventListener('click', function page_now() {
+                currentPage = parseInt(this.innerText);
+                $(`.page-item`).removeClass('active')
+                this.className = `page-item page${currentPage} active`;
+                tr_show(`${currentPage}`)
+
+            })
+            let span = document.createElement('span');
+            span.className = "page-link";
+            span.innerText = `${i}`;
+            li.appendChild(span);
+            ul.appendChild(li);
+
+        }
+        let li = document.createElement('li');
+        li.className = "page-item pagedown";
+        let span = document.createElement("span");
+        span.className = "page-link";
+        span.innerText = '>';
+        li.onclick = page_go;
+        li.appendChild(span);
+        ul.appendChild(li);
+    })
+    // 分頁前後function
+    function page_back() {
+        if (currentPage > 1) {
+            $(`.page-item`).removeClass('active')
+            currentPage -= 1;
+            var now = document.getElementsByClassName(`page${currentPage}`);
+            now[0].className = `page-item page${currentPage} active`;
+            tr_show(`${currentPage}`);
+        }
+    }
+
+    function page_go() {
+        if (currentPage < pages - 1) {
+            $(`.page-item`).removeClass('active')
+            currentPage += 1;
+            var now = document.getElementsByClassName(`page${currentPage}`);
+            now[0].className = `page-item page${currentPage} active`;
+            tr_show(`${currentPage}`);
+        }
+    }
+    // 顯示第幾頁照片TODO....
+    function tr_show(num) {
+        for (var i = 1; i <= $('.card').length; i++) {
+            $(`div .tr_${i}`).hide(); 
+        }
+        for (var i = (num - 1) * 10 + 1; i <= (num * 10); i++) {
+            $(`div .tr_${i}`).show();
+        }
+        console.log(num);
+    }
+</script>

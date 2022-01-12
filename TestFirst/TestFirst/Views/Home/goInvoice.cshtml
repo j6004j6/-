@@ -1,0 +1,335 @@
+﻿@model IEnumerable<TestFirst.tMission_SignOff>
+
+@{
+    ViewBag.Title = "工程款簽核";
+    ViewBag.todo="" ;
+}
+<br>
+<div class="container" style="display:flex;">
+    <h2>
+        工程款簽核
+        @Html.ActionLink("工程款簽核", "goInvoice", "Home", new { }, new { @class = "btn btn-info" })
+        @Html.ActionLink("標單與合約", "BiddingandContract", "Home", new { }, new { @class = "btn btn-secondary" })
+        @Html.ActionLink("專案人力資源規劃", "HumanResource", "Home", new { }, new { @class = "btn btn-secondary" })
+    </h2>
+        <div class="toast"  role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" data-animation="true" data-delay="1000" style="width:500px;position:fixed;right:1%;bottom:5%;background-color:lightgray" >
+            <div class="toast-header">
+                <img src="~/img/blue.png" style="height:20px;width:20px;"class="rounded mr-2" alt="blueblock">
+                <strong class="mr-auto" style="color:black">最新通知 </strong>
+                <small class="text-muted">@DateTime.Now.ToShortTimeString()</small>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body" style="font-weight:600;" id="toConfirm" >
+                 有N個項目待您審核
+            </div>
+        </div>
+   
+</div><hr />
+    
+<div id="counting_btn" >
+    <form>
+        <input class="btn btn-outline-success" style="float:right;width:8%" type="submit" value="Search"/>
+        <input class="form-control" style="float:right;width:18%" id="select_search" name="select_search" type="text" placeholder="Search"/>
+    </form>
+</div>
+<table class="table table-bordered table-hover" style="width:100%">
+    <tr>
+        <th>
+            項次
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fMissionCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fContract)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fMoney)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fChargeMan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fManager)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fConfirmDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fDetails)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fStatus)
+        </th>
+        <th>
+            操作選項
+        </th>
+    </tr>
+    <tbody id="tbody">
+        @{int i = 0;
+            foreach (var item in Model)
+            {
+                i = i + 1;
+        <tr>
+            <td>@i</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fMissionCode)
+            </td>
+            <td>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter">合約書</button>
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document" style="margin:auto">
+                        <img src="@Html.DisplayFor(modelItem => item.fContract)" style="height:50%;width:100%" />
+                    </div>
+                </div>
+            </td>
+            <td>
+                NT.
+                @Html.DisplayFor(modelItem => item.fMoney)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fChargeMan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fManager)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fConfirmDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fDetails)
+            </td>
+            <td class="status">
+                @Html.DisplayFor(modelItem => item.fStatus)
+            </td>
+            <td>
+                @Html.ActionLink("簽核", "Invoice_OK", new { id = item.fMissionCode }, new { @class = "btn btn-info",style="margin:1px", onclick = "return confirm('確定是否簽核?');" })
+                @*@Html.ActionLink("駁回", "Invoice_NO", new { id = item.fMissionCode }, new { @class = "btn btn-danger", onclick = "return confirm('確定是否駁回?');" })*@
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#@item.fMissionCode@item.fMissionCode" onclick="setTemp(`@item.fMissionCode`)">駁回</button>
+                <div class="modal fade" id="@item.fMissionCode@item.fMissionCode" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">駁回事由</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" id="@item.fMissionCode">
+                                <select id="deny_one">
+                                    <option selected>尚未完成工程</option>
+                                    <option>工程品質未達標</option>
+                                    <option>工程逾期</option>
+                                    <option>其他</option>
+                                </select>
+                                <hr>
+                                <textarea id="deny_two" placeholder="詳細說明(選填)" cols="150"rows="10"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" onclick="Invoice_NO()">確認駁回</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+            }
+
+        }
+    </tbody>
+</table>
+
+<script>
+    @{
+        string c1 = Session["UserId"].ToString().Substring(0, 1);
+        string c2 = Session["UserId"].ToString().Substring(1, 1);
+     }
+    var q = document.querySelectorAll(".status");
+    var a = 0, b = 0, c = 0, d = 0; e = 0;
+    // 簽核專員的頁面(按鈕移除以及背景上色)
+    /*1.專員權限*/
+    if (@c2=="7") { 
+        for (var i = 0; i < q.length; i++) {
+
+            if (q[i].innerHTML.match("簽核完畢")) {
+                q[i].parentNode.style.backgroundColor = "#8E8E8E60";
+                q[i].parentNode.style.color = "	#4F4F4F80";
+                var td = q[i].nextSibling.nextSibling
+                td.removeChild(td.childNodes[3])
+                td.removeChild(td.childNodes[1])
+                a = a + 1;
+            }
+            else if (q[i].innerHTML.match("待主管核准")) {
+                q[i].parentNode.style.backgroundColor = "#FFDCB960";
+                q[i].parentNode.style.color = "	#4F4F4F80";
+                var td = q[i].nextSibling.nextSibling
+                td.removeChild(td.childNodes[3])
+                td.removeChild(td.childNodes[1])
+                b = b + 1;
+            }
+            else if (q[i].innerHTML.match("完工待審")) {
+                q[i].parentNode.style.backgroundColor = "#ACD6FF60";
+                c = c + 1;
+            }
+            else if (q[i].innerHTML.match("已駁回")) {
+                q[i].parentNode.style.backgroundColor = "#FF333360";
+                var td = q[i].nextSibling.nextSibling
+                td.removeChild(td.childNodes[3])
+                d = d + 1;
+            }
+            else if (q[i].innerHTML.match("未完工")) {
+                q[i].parentNode.style.backgroundColor = "#DEFFAC60";
+                q[i].parentNode.style.color = "	#4F4F4F80";
+                var td = q[i].nextSibling.nextSibling
+                td.removeChild(td.childNodes[3])
+                td.removeChild(td.childNodes[1])
+                e = e + 1;
+            }
+        }
+    }
+    /*2.主管權限*/
+    else if(@c2=="5"){
+        for (var i = 0; i < q.length; i++) {
+
+            if (q[i].innerHTML.match("簽核完畢")) {
+                q[i].parentNode.style.backgroundColor = "#8E8E8E60";
+                q[i].parentNode.style.color = "	#4F4F4F80";
+                var td = q[i].nextSibling.nextSibling
+                td.removeChild(td.childNodes[3])
+                td.removeChild(td.childNodes[1])
+                a = a + 1;
+            }
+            else if (q[i].innerHTML.match("待主管核准")) {
+                q[i].parentNode.style.backgroundColor = "#FFDCB960";
+                b = b + 1;
+            }
+            else if (q[i].innerHTML.match("完工待審")) {
+                q[i].parentNode.style.backgroundColor = "#ACD6FF60";
+                q[i].parentNode.style.color = "	#4F4F4F80";
+                var td = q[i].nextSibling.nextSibling
+                td.removeChild(td.childNodes[3])
+                td.removeChild(td.childNodes[1])
+                c = c + 1;
+            }
+            else if (q[i].innerHTML.match("已駁回")) {
+                q[i].parentNode.style.backgroundColor = "#FF333360";
+                var td = q[i].nextSibling.nextSibling
+                td.removeChild(td.childNodes[3])
+                td.removeChild(td.childNodes[1])
+                d = d + 1;
+            }
+            else if (q[i].innerHTML.match("未完工")) {
+                q[i].parentNode.style.backgroundColor = "#DEFFAC60";
+                q[i].parentNode.style.color = "	#4F4F4F80";
+                var td = q[i].nextSibling.nextSibling
+                td.removeChild(td.childNodes[3])
+                td.removeChild(td.childNodes[1])
+                e = e + 1;
+            }
+        }
+    }
+    // 簽核專員的頁面(最上方統計數量) TODO...選進來的數字顯示
+    var mother = document.getElementById("counting_btn") // 上方顯示選擇面板
+    mother.className = "mother";
+    var sign0 = document.createElement("button");
+    sign0.textContent = `全部顯示(${a + b + c + d + e})`
+    sign0.className = "btn btn-primary myall"
+    sign0.onclick = select_type;
+    var sign1 = document.createElement("button");   // 面板>>簽核完畢
+    sign1.textContent = `簽核完畢(${a})`;
+    sign1.className = "btn btn-info mydone"
+    sign1.myPara = "簽核完畢";
+    sign1.onclick = select_type
+    var sign2 = document.createElement("button");   // 面板>>待主管核准
+    sign2.textContent = `待主管核准(${b})`;
+    sign2.className = "btn btn-info mywait"
+    sign2.myPara = "待主管核准";
+    sign2.onclick = select_type;
+    var sign3 = document.createElement("button");   // 面板>>完工待審 
+    sign3.textContent = `完工待審(${c})`;
+    sign3.className = "btn btn-info mysign"
+    sign3.myPara = "完工待審";
+    sign3.onclick = select_type;
+    var sign4 = document.createElement("button");   // 面板>>已駁回
+    sign4.textContent = `已駁回(${d})`;
+    sign4.className = "btn btn-info mydeny"
+    sign4.myPara = "已駁回";
+    sign4.onclick = select_type;
+    var sign5 = document.createElement("button");   // 面板>>未完工
+    sign5.textContent = `未完工(${e})`;
+    sign5.className = "btn btn-info myyet";
+    sign5.myPara = "未完工";
+    sign5.onclick = select_type;
+    mother.appendChild(sign0);
+    mother.appendChild(sign1);
+    mother.appendChild(sign2);
+    mother.appendChild(sign3);
+    mother.appendChild(sign4);
+    mother.appendChild(sign5);
+  
+    // 面板呼叫Action的函式
+    function select_type(type) {
+        var str = (type.currentTarget.myPara);
+        console.log(str);
+        if (str=="簽核完畢") {
+            window.location.href = '@Url.Action("goInvoice","Home",new {select_type="簽核完畢"})';
+        }
+        else if (str=="待主管核准") {
+             window.location.href =' @Url.Action("goInvoice","Home",new {select_type="待主管核准"})';
+        }
+        else if (str=="完工待審") {
+             window.location.href =' @Url.Action("goInvoice","Home",new {select_type="完工待審"})';
+        }
+        else if (str=="已駁回") {
+             window.location.href =' @Url.Action("goInvoice","Home",new {select_type="已駁回"})';
+        }
+        else if (str=="未完工") {
+             window.location.href =' @Url.Action("goInvoice","Home",new {select_type="未完工"})';
+        }
+        else {
+            window.location.href='@Url.Action("goInvoice", "Home")';
+        }
+    }
+    // 簽核駁回的functions
+    var c;
+    Invoice_NO = function () //把存的代號+輸入的理由傳到Invoice_NO裡
+    {
+
+        var ans = document.querySelector(`#${c}`);
+        let firstvalue = ans.childNodes[1].value;
+        let secondvalue = ans.childNodes[5].value;
+        let finalvalue = firstvalue +":"+ secondvalue;
+        window.location.href = `../Home/Invoice_NO?id=${c}&reason=${finalvalue}`;
+    }
+    setTemp = function(code) //把該Row的代號存起來
+    {
+        c=code;
+    }
+    // 左上角的通知視窗顯示刷新
+    //TODO...如何送通知到不同的使用者
+    function toastshow()
+    {
+        if (@c2== "7") {
+            $('#toConfirm').text(`還有${c + d}個項目待您簽核`);
+
+        }
+        else if ((@c2== "5")) {
+            $('#toConfirm').text(`還有${b}個項目待您簽核`);  
+        }
+        $('.toast').toast('show');
+    }
+
+    toastshow();
+    
+    setTimeout('toastshow()',600000)    //每小時刷新一次
+    //function myrefresh() {
+    //    //window.location.reload();//重新加载页
+    //    var q = document.getElementById("counting");
+    //    q.innerHTML = "(" + "簽核完畢:" + a + " 待主管核准:" + b + " 完工待審:" + c + " 未完工:" + d + ")";
+    //}
+    //setTimeout('myrefresh()', 10000); //每10秒刷新一次
+    
+</script>

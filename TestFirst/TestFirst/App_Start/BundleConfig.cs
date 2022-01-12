@@ -22,8 +22,7 @@ namespace TestFirst
                       "~/Content/vendor/jquery-easing/jquery.easing.min.js",
                       "~/Content/vendor/magnific-popup/jquery.magnific-popup.min.js",
                       "~/Content/js/creative.min.js",
-                      "~/Scripts/bootstrap.js"
-                      ));
+                      "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

@@ -54,6 +54,15 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.EntityFramework, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.EntityFramework.1.0.1\lib\net45\PagedList.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -167,40 +176,88 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\工程管理Controller.cs" />
+    <Compile Include="dbMyProjectEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbMyProjectEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbMyProjectEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbMyProjectEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbMyProjectEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbMyProjectEntity.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CDate.cs" />
     <Compile Include="Models\CDictionary.cs" />
     <Compile Include="Models\CUser.cs" />
     <Compile Include="Models\CUserFactory.cs" />
-    <Compile Include="Models\ModeltMission.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeltMission.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModeltMission.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeltMission.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModeltMission.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeltMission.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tMission.cs">
-      <DependentUpon>ModeltMission.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tMissionDetail.cs">
-      <DependentUpon>ModeltMission.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\myProject.cs" />
+    <Compile Include="Models\tMissionDetail_Photos_model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tAnnouncement.cs">
+      <DependentUpon>dbMyProjectEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tBidding.cs">
+      <DependentUpon>dbMyProjectEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tmail.cs">
+      <DependentUpon>dbMyProjectEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tMessagBoard.cs">
+      <DependentUpon>dbMyProjectEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tMessageConfirm.cs">
+      <DependentUpon>dbMyProjectEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tMission.cs">
+      <DependentUpon>dbMyProjectEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tMissionDetail.cs">
+      <DependentUpon>dbMyProjectEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tMissionDetail_Photos.cs">
+      <DependentUpon>dbMyProjectEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tMission_SignOff.cs">
+      <DependentUpon>dbMyProjectEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tProject.cs">
+      <DependentUpon>dbMyProjectEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tProject_Drawing.cs">
+      <DependentUpon>dbMyProjectEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tProject_HumanCost.cs">
+      <DependentUpon>dbMyProjectEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tUser.cs">
+      <DependentUpon>dbMyProjectEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Viewmodel\CAdvanceQueryCondition.cs" />
     <Compile Include="Viewmodel\CForreport.cs" />
     <Compile Include="Viewmodel\CLogin.cs" />
+    <Compile Include="Viewmodel\QueryMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\h1_hero.jpg" />
+    <Content Include="Content\img\0.png" />
+    <Content Include="Content\img\1.png" />
+    <Content Include="Content\img\2.png" />
+    <Content Include="Content\img\3.png" />
+    <Content Include="Content\img\4.png" />
+    <Content Include="Content\img\5.png" />
+    <Content Include="Content\img\6.png" />
+    <Content Include="Content\img\7.png" />
+    <Content Include="Content\img\8.png" />
+    <Content Include="Content\img\9.png" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -210,14 +267,19 @@
     <Content Include="Content\css\creative.css" />
     <Content Include="Content\css\creative.min.css" />
     <Content Include="Content\img\bg-masthead.jpg" />
+    <Content Include="Content\img\Company.png" />
+    <Content Include="Content\img\h1_hero.jpg" />
     <Content Include="Content\img\myloge.png" />
+    <Content Include="Content\img\Myworkplace.jfif" />
+    <Content Include="Content\img\Myworkplace1.jfif" />
+    <Content Include="Content\img\Myworkplace2.jfif" />
+    <Content Include="Content\img\Myworkplace3.jfif" />
     <Content Include="Content\img\portfolio\fullsize\1.jpg" />
     <Content Include="Content\img\portfolio\fullsize\2.jpg" />
     <Content Include="Content\img\portfolio\fullsize\3.jpg" />
     <Content Include="Content\img\portfolio\fullsize\4.jpg" />
     <Content Include="Content\img\portfolio\fullsize\5.jpg" />
     <Content Include="Content\img\portfolio\fullsize\6.jpg" />
-    <Content Include="Content\img\portfolio\Theworkplace.png" />
     <Content Include="Content\img\portfolio\thumbnails\1.jpg" />
     <Content Include="Content\img\portfolio\thumbnails\2.jpg" />
     <Content Include="Content\img\portfolio\thumbnails\3.jpg" />
@@ -227,6 +289,8 @@
     <Content Include="Content\img\workplace1.jfif" />
     <Content Include="Content\js\creative.js" />
     <Content Include="Content\js\creative.min.js" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="Content\vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Content\vendor\bootstrap\js\bootstrap.js" />
@@ -258,6 +322,16 @@
     <Content Include="Content\vendor\magnific-popup\jquery.magnific-popup.js" />
     <Content Include="Content\vendor\magnific-popup\jquery.magnific-popup.min.js" />
     <Content Include="Content\vendor\magnific-popup\magnific-popup.css" />
+    <Content Include="dbMyProjectEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbMyProjectEntity.edmx</DependentUpon>
+      <LastGenOutput>dbMyProjectEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="dbMyProjectEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbMyProjectEntity.edmx</DependentUpon>
+      <LastGenOutput>dbMyProjectEntity.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -279,16 +353,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="Models\ModeltMission.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModeltMission.Context.cs</LastGenOutput>
-      <DependentUpon>ModeltMission.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\ModeltMission.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeltMission.edmx</DependentUpon>
-      <LastGenOutput>ModeltMission.cs</LastGenOutput>
-    </Content>
+    <Content Include="img\blue.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -336,13 +401,17 @@
     <Content Include="Content\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\vendor\jquery\jquery.min.map" />
     <Content Include="Content\vendor\jquery\jquery.slim.min.map" />
-    <EntityDeploy Include="Models\ModeltMission.edmx">
+    <EntityDeploy Include="dbMyProjectEntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModeltMission.Designer.cs</LastGenOutput>
+      <LastGenOutput>dbMyProjectEntity.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ModeltMission.edmx.diagram">
-      <DependentUpon>ModeltMission.edmx</DependentUpon>
+    <Content Include="dbMyProjectEntity.edmx.diagram">
+      <DependentUpon>dbMyProjectEntity.edmx</DependentUpon>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\msit125web01 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -420,7 +489,9 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -447,16 +518,35 @@
     <Content Include="Views\Home\登入系統.cshtml" />
     <Content Include="Views\Home\會員資料列表.cshtml" />
     <Content Include="Views\Home\新增會員.cshtml" />
-    <Content Include="Views\Home\工程款簽核.cshtml" />
-    <Content Include="Views\工程管理\管理首頁.cshtml" />
-    <Content Include="Views\工程管理\日報列表.cshtml" />
-    <Content Include="Views\工程管理\新增日報.cshtml" />
+    <Content Include="Views\Home\goInvoice.cshtml" />
+    <Content Include="Views\Home\HumanResource.cshtml" />
+    <Content Include="Views\Home\HumanResource_alt.cshtml" />
+    <Content Include="Views\Home\HumanResource_new.cshtml" />
+    <Content Include="Views\Home\BiddingandContract.cshtml" />
+    <Content Include="Views\Home\Bidding_Edit.cshtml" />
+    <Content Include="Views\Home\Bidding_new.cshtml" />
+    <Content Include="Views\Home\QandA.cshtml" />
+    <Content Include="Views\Home\Photos.cshtml" />
+    <Content Include="Views\Home\Photos_new.cshtml" />
     <Content Include="Views\工程管理\新增專案.cshtml" />
+    <Content Include="Views\工程管理\新增日報.cshtml" />
+    <Content Include="Views\工程管理\日報列表.cshtml" />
+    <Content Include="Views\工程管理\管理首頁.cshtml" />
     <Content Include="Views\工程管理\編輯專案.cshtml" />
     <Content Include="Views\工程管理\編輯日報.cshtml" />
+    <Content Include="Views\Home\AdvanceQueryMessage.cshtml" />
+    <Content Include="Views\Home\Chat.cshtml" />
+    <Content Include="Views\Home\EditMessage.cshtml" />
+    <Content Include="Views\Home\OpenMail.cshtml" />
+    <Content Include="Views\Home\ReplyMail.cshtml" />
+    <Content Include="Views\Home\SaveMessage1.cshtml" />
+    <Content Include="Views\Home\SendMail.cshtml" />
+    <Content Include="Views\Home\留言板.cshtml" />
+    <Content Include="Views\Home\信箱.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

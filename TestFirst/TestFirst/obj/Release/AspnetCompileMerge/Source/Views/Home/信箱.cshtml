@@ -1,0 +1,123 @@
+﻿@model IEnumerable<TestFirst.tmail>
+@using TestFirst.Models
+@using TestFirst
+
+<br />
+<br />
+@{
+    ViewBag.Title = "信箱";
+    CUser user = (CUser)Session[CDictionary.SK_CURRENT_LOGINED_USER];
+}
+<h6>未讀:@ViewBag.mailcount</h6>
+@Html.ActionLink("寄信","SendMail","Home")
+<table class="table">
+    <tr>
+        <th>
+            標題目
+        </th>
+        <th>
+            寄件人
+        </th>
+        <th>
+            收件人
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fmessage)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.frecieveid.ToString() != user.fId)
+        {
+            if (!item.fsenddelete)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ftitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tUser.fAccount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tUser1.fAccount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fdate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fmessage)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("刪除", "DeletMail", new { fid = item.fid }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink("打開", "OpenMail", new { fid = item.fid }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>}
+
+        }
+        else if (!item.freceievedelete)
+        {
+            if (!item.fisreaded)
+            {
+                <tr style="background-color:darkgray">
+                    <td>
+                        @item.ftitle
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tUser.fAccount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tUser1.fAccount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fdate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fmessage)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("刪除", "DeletMail", new { fid = item.fid }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink("打開", "OpenMail", new { fid = item.fid }, new { @class = "btn btn-primary" })
+                        @*@Html.ActionLink("回信", "ReplyMail", new { fid = item.fid }, new { @class = "btn btn-primary" })*@
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        @item.ftitle
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tUser.fAccount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tUser1.fAccount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fdate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fmessage)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("刪除", "DeletMail", new { fid = item.fid }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink("打開", "OpenMail", new { fid = item.fid }, new { @class = "btn btn-primary" })
+                        @*@Html.ActionLink("回信", "ReplyMail", new { fid = item.fid }, new { @class = "btn btn-primary" })*@
+                    </td>
+                </tr>
+
+            }
+        }
+
+    }
+
+</table>
