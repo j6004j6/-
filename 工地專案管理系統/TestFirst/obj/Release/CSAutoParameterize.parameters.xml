@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="dbMyProjectEntities-Web.config Connection String" description="dbMyProjectEntities 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="metadata=res://*/MyProjectEntityModel.csdl|res://*/MyProjectEntityModel.ssdl|res://*/MyProjectEntityModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;Server=tcp:msit125databaseserver.database.windows.net,1433;Initial Catalog=myDB;Persist Security Info=False;User ID=v199945;Password=Vincent0987471676;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;App=EntityFramework&quot;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\User\\Desktop\\TestFirst\\TestFirst\\TestFirst\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='dbMyProjectEntities']/@connectionString" />
-  </parameter>
-</parameters>
