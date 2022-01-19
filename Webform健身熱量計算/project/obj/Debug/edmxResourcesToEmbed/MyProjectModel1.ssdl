@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NorthwindModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Mydrink">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="DrinkName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Picture" Type="varbinary(max)" />
+    <Property Name="Calories" Type="int" />
+  </EntityType>
+  <EntityType Name="Mymeat">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Foodname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Picture" Type="varbinary(max)" />
+    <Property Name="Calories" Type="int" />
+  </EntityType>
+  <EntityType Name="mymember">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="16" />
+    <Property Name="password" Type="nvarchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="Mypicture">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="desc" Type="nvarchar" MaxLength="50" />
+    <Property Name="picture" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="MyVegetables">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Foodname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Picture" Type="varbinary(max)" />
+    <Property Name="Calories" Type="int" />
+  </EntityType>
+  <EntityContainer Name="NorthwindModelStoreContainer">
+    <EntitySet Name="Mydrink" EntityType="Self.Mydrink" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mymeat" EntityType="Self.Mymeat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mymember" EntityType="Self.mymember" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mypicture" EntityType="Self.Mypicture" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MyVegetables" EntityType="Self.MyVegetables" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

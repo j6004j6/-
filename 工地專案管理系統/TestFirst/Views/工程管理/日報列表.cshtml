@@ -1,0 +1,168 @@
+﻿@model IEnumerable<TestFirst.tMissionDetail>
+@{
+    ViewBag.Title = "日報列表";
+}
+<br />
+@using (Html.BeginForm())
+{
+<h4 style="font-weight:bold">
+    工程管理系統
+    @Html.ActionLink("工程列表", "管理首頁", "工程管理", null, new { @class = "btn btn-secondary" })
+    @Html.ActionLink("日報列表", "日報列表", "工程管理", null, new { @class = "btn btn-info" })
+
+</h4>
+    <hr />
+    <body>
+        <div>
+            <fieldset class="clearfix" style="border:2px solid #DDDDDD; padding:10px; border-radius:20px;" id="Search">
+                <legend class="container-sm">進階查詢</legend>
+                <div class="container-sm">
+                    <label>施工項目 : </label> @Html.TextBox("projName", null, new { @class = "form-control-sm" })
+                    <label>年度 : </label>
+                    <select name="projYear" id="TheYear" class="custom-select">
+                        @{
+                            foreach (var item in ViewBag.Year)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        }
+                    </select>
+                    <br>
+                    <label>工程代號 : </label> @Html.TextBox("txtCode", null, new { @class = "form-control-sm" })
+                    <label>月報 : </label>
+                    <select name="projMouth" id="TheMouth" class="custom-select">
+                        @{
+                            foreach (var item in ViewBag.Mouth)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        }
+                    </select>
+                    <br>
+                    <label>負責人員 : </label> @Html.TextBox("projChargeMan", null, new { @class = "form-control-sm" })
+                    <label>週報 : </label>
+                    <select name="projWeekend" class="custom-select">
+                        <option value=""></option>
+                        <option value="第一週">第一週</option>
+                        <option value="第二週">第二週</option>
+                        <option value="第三週">第三週</option>
+                        <option value="第四週">第四週</option>
+                        <option value="第五週">第五週</option>
+                    </select>
+                    <br /><br />
+                    <label>日期區間 : </label> @Html.TextBox("projDayStart", null, new { @class = "form-control-sm" })
+                    ~@Html.TextBox("projDayEnd", null, new { @class = "form-control-sm" })
+                    <br /><br />
+                    <input type="submit" value="查詢" class="btn btn-outline-primary" />
+                </div>
+            </fieldset>
+        </div>
+
+        <br />
+        <p>
+
+            @Html.ActionLink("新增日報", "新增日報", "工程管理", null, new { @class = "btn btn-primary" })
+            <button type="button" class="btn btn-info" style="float:right" onclick="hidding()">Search</button>
+
+        </p>
+
+
+        <table class="table table-bordered table-striped ">
+            <tr style="background-color:lightgray">
+                <th>
+                    專案代號
+                </th>
+                <th>
+                    工程項目
+                </th>
+                <th>
+                    工地負責人
+                </th>
+                <th>
+                    日期<img src="~/img/tri.png" style="width:12px;float:right;margin-top:5px" onclick="orderby_date()" />
+                </th>
+                <th>
+                    工作人數
+                </th>
+                <th>
+                    天氣
+                </th>
+                <th>
+                    備 註
+                </th>
+                <th>
+                    編輯
+                </th>
+                <th>
+                    刪除
+                </th>
+                <th>
+                    工程照片
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fChargeMan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fToday)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fWorkers)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fWeather)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fPS)
+                    </td>
+                    <td>
+                        @Html.ActionLink("編輯", "編輯日報", "工程管理", new { fId = item.fId }, new { @class = "btn btn-info" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("刪除", "刪除日報", "工程管理", new { fId = item.fId }, new { @class = "btn btn-danger", onclick = "return confirm('確定要刪除嗎?')" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("上傳照片", "Photos_new", "Home", new { name = item.fName }, new { @class = "btn btn-warning" })
+
+                    </td>
+                </tr>
+            }
+
+
+        </table>
+
+
+        @section scripts{
+            <script>
+                $('.theli').hide();
+                var flag = false;
+                $('#Search').hide();
+                function hidding() {
+                    if (flag == false) {
+                        $('#Search').show();
+                        flag = true;
+                    }
+                    else {
+                        $('#Search').hide();
+                        flag = false;
+                    }
+
+                }
+                function orderby_date() {
+                    window.location.href = "../工程管理/日報列表?date=fToday";
+                }
+
+            </script>
+        }
+    </body>
+}

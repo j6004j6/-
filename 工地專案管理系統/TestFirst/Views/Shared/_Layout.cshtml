@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("styles", required: false)
+    @RenderSection("style", required: false)
+    @*<link href="~/Content/style.css" rel="stylesheet" />*@
+    <style>
+
+
+        .container {
+            width: 900px;
+            margin: 0 auto;
+        }
+
+        .card {
+            /* 設定父親定位點 */
+            position: relative;
+            width: 270px;
+            float: left;
+            margin: 10px;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .info {
+            /*   display: none; */
+            opacity: 0;
+            position: absolute;
+            box-sizing: border-box;
+            background-color: rgba(0,0,0,.3);
+            top: 0;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            padding-top: 40px;
+        }
+
+            .info p {
+                color: #fff;
+            }
+
+            .info:hover {
+                -webkit-transition: 500ms;
+                opacity: 1;
+            }
+
+        .mother {
+            margin-bottom: 10px;
+        }
+
+        img:hover {
+            background-color: red;
+        }
+
+        .page_mouse {
+            cursor: pointer;
+        }
+
+        .myall {
+            opacity: 0.8;
+            color: black;
+            margin-right: 5px;
+        }
+
+        .mydone {
+            background-color: #8E8E8E;
+            opacity: 0.8;
+            color: black;
+            margin-right: 5px;
+        }
+
+        .mywait {
+            background-color: #FFDCB9;
+            opacity: 0.8;
+            color: black;
+            margin-right: 5px;
+        }
+
+        .mysign {
+            background-color: #ACD6FF;
+            opacity: 0.8;
+            color: black;
+            margin-right: 5px;
+        }
+
+        .mydeny {
+            background-color: #FF3333;
+            opacity: 0.8;
+            color: black;
+            margin-right: 5px;
+        }
+
+        .myyet {
+            background-color: #DEFFAC;
+            opacity: 0.8;
+            color: #000000;
+            margin-right: 5px;
+        }
+
+        .portfolio-box {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="layout_body" >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-3" id="mainNav">
+        <div class="container-fluid" style="margin-left:8.5%">
+            <a style="color:white" class="navbar-brand js-scroll-trigger" href="../Home/首頁">專案管理系統</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="../工程管理/管理首頁" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">工程管理</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="../工程管理/管理首頁">專案列表</a>
+                            <a class="dropdown-item" href="../工程管理/日報列表">日報列表</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">金物流管理</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="../Home/goInvoice">工程款簽核</a>
+                            <a class="dropdown-item" href="../Home/BiddingandContract">標單與合約</a>
+                            <a class="dropdown-item" href="../Home/HumanResource">專案人力資源規劃</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">資訊分析與圖表</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="../Chart/chartProject">專案時程圖</a>
+                            <a class="dropdown-item" href="../Chart/chartMission">施工日數表</a>
+                            <a class="dropdown-item" href="../Chart/chartProject_Humancost">員工薪資表</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">其他功能</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="../Home/QandA">QNA機器人</a>
+                            <a class="dropdown-item" href="../Home/Photos">專案照片</a>
+                            <a class="dropdown-item" href="../Home/留言板">公告區和留言板</a>
+                        </div>
+                    </li>
+                </ul>
+                <span style="color:white;margin-right:3%">歡迎 : @Session["UserName"] </span>
+                @Html.ActionLink("登出", "登出", "Home", new { id = "logout" }, new { @class = "btn btn-danger" })
+
+            </div>
+           
+        </div>
+    </nav>
+    <div class="" style="width:80%;margin:auto">
+        @RenderBody()
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

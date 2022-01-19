@@ -1,0 +1,96 @@
+﻿@model TestFirst.tMissionDetail_Photos
+
+@{
+    ViewBag.Title = "Photos_new";
+}
+
+<hr/>
+<form action="@Url.Action("Photos_new", "Home")" method="post" enctype="multipart/form-data">
+
+
+    <div class="form-horizontal">
+        <h4>新增</h4>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.fName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input name="fName" value="@ViewBag.fname" class="form-control" type="text" id="fName"/>
+                   @Html.ValidationMessageFor(model => model.fName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.fPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" id="preview_photo">
+                <input type="file" multiple accept=".png, .jpg, .jpeg" name="fPhoto" id="fPhoto" />
+                <img src="" id="preview_img" style="width:15%"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input name="fDate" value="@DateTime.Now.ToShortDateString()" class="form-control" type="text" />
+                @Html.ValidationMessageFor(model => model.fDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fCategory, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="fCategory" id="fCategory" class="dropdown form-control">
+                    @{foreach (var item in ViewBag.Project as List<TestFirst.tProject>)
+                        {
+                            <option id="@item.fCode">@item.fName</option>
+                        }
+
+                      }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="新增" class="btn btn-info" />
+                <button type="reset" class="btn btn-danger" onclick="goBack()">取消新增</button>
+            </div>
+        </div>
+    </div>
+    
+</form>
+<script>
+    $("#fPhoto").change(function () { readURL(this); })
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+
+                $("#preview_img").attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    function goBack() {
+        $.get("../Home/Photos_AJAX", { name:$('#fName').val() }, function (datas) {
+            console.log(datas);
+            if (datas == "Photos") {
+                window.location.href = `../Home/Photos`;
+            }
+            else {
+                window.location.href =`../工程管理/日報列表?txtcode=${datas}`
+            }
+        })
+       
+    }
+</script>
+
+ 

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NorthwindModelStoreContainer" CdmEntityContainer="NorthwindEntities1">
+    <EntitySetMapping Name="Mydrink">
+      <EntityTypeMapping TypeName="NorthwindModel.Mydrink">
+        <MappingFragment StoreEntitySet="Mydrink">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DrinkName" ColumnName="DrinkName" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="Calories" ColumnName="Calories" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mymeat">
+      <EntityTypeMapping TypeName="NorthwindModel.Mymeat">
+        <MappingFragment StoreEntitySet="Mymeat">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Foodname" ColumnName="Foodname" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="Calories" ColumnName="Calories" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mymember">
+      <EntityTypeMapping TypeName="NorthwindModel.mymember">
+        <MappingFragment StoreEntitySet="mymember">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mypicture">
+      <EntityTypeMapping TypeName="NorthwindModel.Mypicture">
+        <MappingFragment StoreEntitySet="Mypicture">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="desc" ColumnName="desc" />
+          <ScalarProperty Name="picture" ColumnName="picture" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MyVegetables">
+      <EntityTypeMapping TypeName="NorthwindModel.MyVegetables">
+        <MappingFragment StoreEntitySet="MyVegetables">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Foodname" ColumnName="Foodname" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="Calories" ColumnName="Calories" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

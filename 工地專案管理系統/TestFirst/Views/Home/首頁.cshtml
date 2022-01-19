@@ -1,0 +1,232 @@
+﻿
+@{
+    ViewBag.Title = "首頁";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>專案管理系統</title>
+    <!-- Font Awesome Icons -->
+    <link href="~/Content/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <!-- Plugin CSS -->
+    <link href="~/Content/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <!-- Theme CSS - Includes Bootstrap -->
+  
+    @section styles
+    {
+        <style>
+            .mysec {
+                background-color: #d2691e90;
+                margin-top: 50px;
+                margin-bottom: 50px;
+            }
+
+            .mydiv {
+                margin: 60px 130px 60px 130px;
+            }
+        </style>
+    }
+</head>
+
+<body id="page-top">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" data-animation="true" data-delay="1000" style="width:500px;position:fixed;right:1%;top:10%;background-color:lightgray;z-index:100">
+        <div class="toast-header">
+            <img src="~/img/blue.png" style="height:20px;width:20px;" class="rounded mr-2" alt="blueblock">
+            <strong class="mr-auto" style="color:black">最新通知 </strong>
+            <small id="time" class="text-muted"></small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body" style="font-weight:600;" id="toConfirm">
+            有N個項目待您審核
+        </div>
+    </div>
+    <br>
+    <!-- 公司簡介 -->
+    <section class="mysec" id="about" >
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="mydiv">
+                        <h2>公司簡介</h2>
+                        <p>
+                            新人類資訊科技股份有限公司創立於1988年，一個充滿創意和技術力的團隊，隨著資訊產業的迅速發展，持續發表與時俱進的卓越軟體。從個人電腦應用跨足企業管理平台，新人類踩著不斷創新與演進的腳步，為使用者提供最實用，最能提昇工作效率的產品。
+                            本公司目前總部設立於台北，2006年成立蘇州新人類軟件有限公司，2018年成立高雄分公司。<br />
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="mydiv">
+                        <h2>研發理念</h2>
+                        <p>
+                            為每位使用者提供最好用，最能提升效率的軟體，是新人類一直以來秉持的信念。電腦問世短短數十年，驚人的發展速度更是引導了數次翻天覆地的變革，隨著使用者需求的不斷演變，新人類的創意與技術也是快速成長，提供最佳的軟體解決方案亦是新人類的使命。
+                            深耕軟體市場多年，累積的豐富經驗與使用者的意見都成為研發團隊創意發想的基石，推出的產品除了創新，更是致力於貼近使用者的需求。
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="mydiv">
+                        <h2>歷史背景</h2>
+                        <p>
+                            新人類公司創立於1988年，公司早期的研發重心為影像處理與印前排版，華人世界佔有率第一的桌上排版系統---莎士比亞、影像繪圖的達文西、 美工設計的麥克筆與一系列暢銷兩岸三地的DIY系列軟體---請多指教、歡迎光臨、輕鬆拍、歡樂時光等數十套產品，皆為新人類自行研發的代表作。
+                            合各主要市場使用者的需求。
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </section>
+    <!-- 管理功能 -->
+    <section id="portfolio">
+        <div class="container-fluid p-0">
+            <div class="row no-gutters">
+                <div class="col-lg-4 col-sm-6" id="pic1">
+                    <div class="portfolio-box" onclick="goEngineering()">
+                        <img class="img-fluid" src="~/Content/img/portfolio/thumbnails/1-1.jpg" alt="" >
+                        <div class="portfolio-box-caption">
+                            <div class="project-name">
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6" id="pic2">
+                    <div class="portfolio-box" onclick="goInvoice()">
+                        <img class="img-fluid" src="~/Content/img/portfolio/thumbnails/2-1.jpg" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="project-name">
+                         
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6" id="pic3" >
+                    <div class="portfolio-box" onclick="goPhotos()">
+                        <img class="img-fluid" src="~/Content/img/portfolio/thumbnails/3-1.jpg" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="project-name">
+                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6" id="pic4">
+                    <div class="portfolio-box" onclick="QandAbot()">
+                        <img class="img-fluid" src="~/Content/img/portfolio/thumbnails/4-1.jpg" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="project-name">
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6" id="pic5">
+                    <div class="portfolio-box" onclick="goChart()">
+                        <img class="img-fluid" src="~/Content/img/portfolio/thumbnails/5-1.jpg" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="project-name">
+                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6" id="pic6">
+                    <div class="portfolio-box" onclick="messageboard()">
+                        <img class="img-fluid" src="~/Content/img/portfolio/thumbnails/6-1.jpg" alt="">
+                        <div class="portfolio-box-caption p-3">
+                            <div class="project-name">
+                          
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯絡資訊 -->
+    <section class="page-section" id="contact">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="mt-0">Let's Get In Touch!</h2>
+                    <hr class="divider my-4">
+                    <p class="text-muted mb-5">Ready to start your next project with us? Give us a call or send us an email and we will get back to you as soon as possible!</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
+                    <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
+                    <div>02-6631-8168</div>
+                </div>
+                <div class="col-lg-4 mr-auto text-center">
+                    <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
+                    <!-- Make sure to change the email address in anchor text AND the link below! -->
+                    <a class="d-block" href="mailto:contactus@iii.org.tw">contactus@iii.org.tw</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function goInvoice() {
+            window.location.href = '../Home/goInvoice';
+        }
+        function messageboard() {
+            window.location.href = '../Home/留言板';
+        }
+        function QandAbot() {
+            window.location.href = "../Home/QandA";
+        }
+        function goPhotos() {
+            window.location.href = "../Home/Photos"
+        }
+        function goEngineering()
+        {
+            window.location.href = "../工程管理/管理首頁";
+        }
+        function goChart() {
+            window.location.href = "../Chart/chartProject";
+        }
+        // 用AJAX取得現在的提示字串放在toast裡(每10分鐘刷新一次)
+        function toastshow()
+        {
+            console.log(@Session["UserId"])
+            $.ajax({
+                type: "POST",
+                url: "../Home/AJAX_Home?id=" +@Session["UserId"],
+                dataType: 'text',
+                success: function (result) {
+                    $('#toConfirm').text(result);
+                    $('#time').text(' @DateTime.Now.ToShortTimeString() ');
+                }
+            })
+            $('.toast').toast('show');
+        }
+        toastshow();
+        setTimeout('toastshow()', 100000);
+    
+    </script>
+</body>
+
+</html>

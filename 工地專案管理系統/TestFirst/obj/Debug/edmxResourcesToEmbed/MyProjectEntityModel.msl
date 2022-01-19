@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbMyProjectModelStoreContainer" CdmEntityContainer="dbMyProjectEntities">
+    <EntitySetMapping Name="tBidding">
+      <EntityTypeMapping TypeName="dbMyProjectModel.tBidding">
+        <MappingFragment StoreEntitySet="tBidding">
+          <ScalarProperty Name="fId" ColumnName="fId" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fCategory" ColumnName="fCategory" />
+          <ScalarProperty Name="fUnit" ColumnName="fUnit" />
+          <ScalarProperty Name="fUnitPrice" ColumnName="fUnitPrice" />
+          <ScalarProperty Name="fAmount" ColumnName="fAmount" />
+          <ScalarProperty Name="fBidder" ColumnName="fBidder" />
+          <ScalarProperty Name="fChargeMan" ColumnName="fChargeMan" />
+          <ScalarProperty Name="fDate" ColumnName="fDate" />
+          <ScalarProperty Name="fContract" ColumnName="fContract" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMission">
+      <EntityTypeMapping TypeName="dbMyProjectModel.tMission">
+        <MappingFragment StoreEntitySet="tMission">
+          <ScalarProperty Name="fId" ColumnName="fId" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fProjectCode" ColumnName="fProjectCode" />
+          <ScalarProperty Name="fStage" ColumnName="fStage" />
+          <ScalarProperty Name="fCode" ColumnName="fCode" />
+          <ScalarProperty Name="fEST_Time" ColumnName="fEST_Time" />
+          <ScalarProperty Name="fSum_Time" ColumnName="fSum_Time" />
+          <ScalarProperty Name="fReal_Time" ColumnName="fReal_Time" />
+          <ScalarProperty Name="fComplete" ColumnName="fComplete" />
+          <ScalarProperty Name="fChargeMan" ColumnName="fChargeMan" />
+          <ScalarProperty Name="fConfirmer" ColumnName="fConfirmer" />
+          <ScalarProperty Name="fPS" ColumnName="fPS" />
+          <ScalarProperty Name="fPayment" ColumnName="fPayment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMission_SignOff">
+      <EntityTypeMapping TypeName="dbMyProjectModel.tMission_SignOff">
+        <MappingFragment StoreEntitySet="tMission_SignOff">
+          <ScalarProperty Name="fConfirmDate" ColumnName="fConfirmDate" />
+          <ScalarProperty Name="fDetails" ColumnName="fDetails" />
+          <ScalarProperty Name="fId" ColumnName="fId" />
+          <ScalarProperty Name="fMissionCode" ColumnName="fMissionCode" />
+          <ScalarProperty Name="fContract" ColumnName="fContract" />
+          <ScalarProperty Name="fMoney" ColumnName="fMoney" />
+          <ScalarProperty Name="fChargeMan" ColumnName="fChargeMan" />
+          <ScalarProperty Name="fManager" ColumnName="fManager" />
+          <ScalarProperty Name="fStatus" ColumnName="fStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMissionDetail">
+      <EntityTypeMapping TypeName="dbMyProjectModel.tMissionDetail">
+        <MappingFragment StoreEntitySet="tMissionDetail">
+          <ScalarProperty Name="fId" ColumnName="fId" />
+          <ScalarProperty Name="fCode" ColumnName="fCode" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fMaterial" ColumnName="fMaterial" />
+          <ScalarProperty Name="fChargeMan" ColumnName="fChargeMan" />
+          <ScalarProperty Name="fWorkers" ColumnName="fWorkers" />
+          <ScalarProperty Name="fWeather" ColumnName="fWeather" />
+          <ScalarProperty Name="fToday" ColumnName="fToday" />
+          <ScalarProperty Name="fPhoto" ColumnName="fPhoto" />
+          <ScalarProperty Name="fPS" ColumnName="fPS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMissionDetail_Photos">
+      <EntityTypeMapping TypeName="dbMyProjectModel.tMissionDetail_Photos">
+        <MappingFragment StoreEntitySet="tMissionDetail_Photos">
+          <ScalarProperty Name="fCategory" ColumnName="fCategory" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fId" ColumnName="fId" />
+          <ScalarProperty Name="fPhoto" ColumnName="fPhoto" />
+          <ScalarProperty Name="fDate" ColumnName="fDate" />
+          <ScalarProperty Name="fDescription" ColumnName="fDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tProject">
+      <EntityTypeMapping TypeName="dbMyProjectModel.tProject">
+        <MappingFragment StoreEntitySet="tProject">
+          <ScalarProperty Name="fId" ColumnName="fId" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fEST_StartDate" ColumnName="fEST_StartDate" />
+          <ScalarProperty Name="fEST_EndDate" ColumnName="fEST_EndDate" />
+          <ScalarProperty Name="fReal_StartDate" ColumnName="fReal_StartDate" />
+          <ScalarProperty Name="fReal_EndDate" ColumnName="fReal_EndDate" />
+          <ScalarProperty Name="fChargeMan" ColumnName="fChargeMan" />
+          <ScalarProperty Name="fLocation" ColumnName="fLocation" />
+          <ScalarProperty Name="fBoss" ColumnName="fBoss" />
+          <ScalarProperty Name="fMoney" ColumnName="fMoney" />
+          <ScalarProperty Name="fDetail" ColumnName="fDetail" />
+          <ScalarProperty Name="fCode" ColumnName="fCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tProject_Drawing">
+      <EntityTypeMapping TypeName="dbMyProjectModel.tProject_Drawing">
+        <MappingFragment StoreEntitySet="tProject_Drawing">
+          <ScalarProperty Name="fId" ColumnName="fId" />
+          <ScalarProperty Name="fUrl" ColumnName="fUrl" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fAuthor" ColumnName="fAuthor" />
+          <ScalarProperty Name="fVersion" ColumnName="fVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tUser">
+      <EntityTypeMapping TypeName="dbMyProjectModel.tUser">
+        <MappingFragment StoreEntitySet="tUser">
+          <ScalarProperty Name="fId" ColumnName="fId" />
+          <ScalarProperty Name="fAccount" ColumnName="fAccount" />
+          <ScalarProperty Name="fPassword" ColumnName="fPassword" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fStatus" ColumnName="fStatus" />
+          <ScalarProperty Name="fArrivingDate" ColumnName="fArrivingDate" />
+          <ScalarProperty Name="fLeavingDate" ColumnName="fLeavingDate" />
+          <ScalarProperty Name="fEmail" ColumnName="fEmail" />
+          <ScalarProperty Name="fPhone" ColumnName="fPhone" />
+          <ScalarProperty Name="fAddress" ColumnName="fAddress" />
+          <ScalarProperty Name="fEmployeeId" ColumnName="fEmployeeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tProject_HumanCost">
+      <EntityTypeMapping TypeName="dbMyProjectModel.tProject_HumanCost">
+        <MappingFragment StoreEntitySet="tProject_HumanCost">
+          <ScalarProperty Name="fEndDate" ColumnName="fEndDate" />
+          <ScalarProperty Name="fStartDate" ColumnName="fStartDate" />
+          <ScalarProperty Name="fNumberOfPeople" ColumnName="fNumberOfPeople" />
+          <ScalarProperty Name="fSalary" ColumnName="fSalary" />
+          <ScalarProperty Name="fLevel" ColumnName="fLevel" />
+          <ScalarProperty Name="fProjectCode" ColumnName="fProjectCode" />
+          <ScalarProperty Name="fId" ColumnName="fId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tAnnouncement">
+      <EntityTypeMapping TypeName="dbMyProjectModel.tAnnouncement">
+        <MappingFragment StoreEntitySet="tAnnouncement">
+          <ScalarProperty Name="fTitle" ColumnName="fTitle" />
+          <ScalarProperty Name="fTime" ColumnName="fTime" />
+          <ScalarProperty Name="fMessage" ColumnName="fMessage" />
+          <ScalarProperty Name="fGetter" ColumnName="fGetter" />
+          <ScalarProperty Name="fType" ColumnName="fType" />
+          <ScalarProperty Name="fPoster" ColumnName="fPoster" />
+          <ScalarProperty Name="fId" ColumnName="fId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tmail">
+      <EntityTypeMapping TypeName="dbMyProjectModel.tmail">
+        <MappingFragment StoreEntitySet="tmail">
+          <ScalarProperty Name="freceievedelete" ColumnName="freceievedelete" />
+          <ScalarProperty Name="fsenddelete" ColumnName="fsenddelete" />
+          <ScalarProperty Name="fisreaded" ColumnName="fisreaded" />
+          <ScalarProperty Name="isreplied" ColumnName="isreplied" />
+          <ScalarProperty Name="replymaiid" ColumnName="replymaiid" />
+          <ScalarProperty Name="fmessage" ColumnName="fmessage" />
+          <ScalarProperty Name="frecieveid" ColumnName="frecieveid" />
+          <ScalarProperty Name="fsendid" ColumnName="fsendid" />
+          <ScalarProperty Name="fdate" ColumnName="fdate" />
+          <ScalarProperty Name="ftitle" ColumnName="ftitle" />
+          <ScalarProperty Name="fid" ColumnName="fid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMessagBoard">
+      <EntityTypeMapping TypeName="dbMyProjectModel.tMessagBoard">
+        <MappingFragment StoreEntitySet="tMessagBoard">
+          <ScalarProperty Name="fauthority" ColumnName="fauthority" />
+          <ScalarProperty Name="fdepartment" ColumnName="fdepartment" />
+          <ScalarProperty Name="fdatetime" ColumnName="fdatetime" />
+          <ScalarProperty Name="fmessage" ColumnName="fmessage" />
+          <ScalarProperty Name="fuser_id" ColumnName="fuser_id" />
+          <ScalarProperty Name="ftitle" ColumnName="ftitle" />
+          <ScalarProperty Name="fid" ColumnName="fid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMessageConfirm">
+      <EntityTypeMapping TypeName="dbMyProjectModel.tMessageConfirm">
+        <MappingFragment StoreEntitySet="tMessageConfirm">
+          <ScalarProperty Name="fuser_id" ColumnName="fuser_id" />
+          <ScalarProperty Name="fmssage_id" ColumnName="fmssage_id" />
+          <ScalarProperty Name="fid" ColumnName="fid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
