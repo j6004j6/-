@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div>
+    <h1>信箱</h1>
+    @using (Html.BeginForm("SendMail", "Home", FormMethod.Post))
+    {
+        <input type="text" id="mymail" name="MyMail" />
+        <input type="submit" value="寄信" id="mysubmit" />
+
+    }
+
+
+</div>
